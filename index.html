@@ -1,901 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="te">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Student Study Hub | SS Career Hub</title>
-
+<title>Student Study Hub - 10th Class</title>
 <style>
-:root{
-  --green:#087f5b;
-  --dark:#07543f;
-  --light:#e9f8f2;
-  --accent:#f4c542;
-  --white:#ffffff;
-  --text:#18352c;
-  --gray:#66756f;
-}
-
-*{box-sizing:border-box;margin:0;padding:0}
-
-html{scroll-behavior:smooth}
-
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f5fbf8;
-  color:var(--text);
-  line-height:1.6;
-}
-
-header{
-  background:linear-gradient(135deg,var(--dark),var(--green));
-  color:white;
-  padding:18px 6%;
-  position:sticky;
-  top:0;
-  z-index:1000;
-  box-shadow:0 4px 15px rgba(0,0,0,.15);
-}
-
-.nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-}
-
-.logo{
-  font-size:24px;
-  font-weight:800;
-}
-
-.logo span{color:var(--accent)}
-
-nav{
-  display:flex;
-  gap:15px;
-  flex-wrap:wrap;
-}
-
-nav a{
-  color:white;
-  text-decoration:none;
-  font-size:14px;
-  font-weight:600;
-}
-
-.hero{
-  background:linear-gradient(135deg,#e9f8f2,#ffffff);
-  padding:75px 7%;
-  text-align:center;
-}
-
-.badge{
-  display:inline-block;
-  background:var(--green);
-  color:white;
-  padding:7px 16px;
-  border-radius:30px;
-  font-size:13px;
-  margin-bottom:18px;
-}
-
-.hero h1{
-  font-size:48px;
-  color:var(--dark);
-  margin-bottom:15px;
-}
-
-.hero h1 span{color:var(--green)}
-
-.hero p{
-  max-width:800px;
-  margin:auto;
-  color:var(--gray);
-  font-size:18px;
-}
-
-.hero-buttons{
-  margin-top:28px;
-  display:flex;
-  justify-content:center;
-  gap:15px;
-  flex-wrap:wrap;
-}
-
-.btn{
-  display:inline-block;
-  padding:12px 22px;
-  border-radius:8px;
-  text-decoration:none;
-  font-weight:bold;
-  border:none;
-  cursor:pointer;
-}
-
-.btn-primary{
-  background:var(--green);
-  color:white;
-}
-
-.btn-secondary{
-  background:white;
-  color:var(--green);
-  border:2px solid var(--green);
-}
-
-section{
-  padding:65px 7%;
-}
-
-.section-title{
-  text-align:center;
-  margin-bottom:40px;
-}
-
-.section-title h2{
-  color:var(--dark);
-  font-size:32px;
-}
-
-.section-title p{
-  color:var(--gray);
-}
-
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:22px;
-}
-
-.card{
-  background:white;
-  padding:25px;
-  border-radius:15px;
-  box-shadow:0 5px 20px rgba(0,0,0,.07);
-  border-top:4px solid var(--green);
-  transition:.25s;
-}
-
-.card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 10px 28px rgba(0,0,0,.12);
-}
-
-.icon{
-  font-size:35px;
-  margin-bottom:12px;
-}
-
-.card h3{
-  color:var(--dark);
-  margin-bottom:8px;
-}
-
-.card p{
-  color:var(--gray);
-}
-
-.subject-card{
-  cursor:pointer;
-}
-
-.subject-content{
-  display:none;
-  margin-top:18px;
-  padding:20px;
-  background:var(--light);
-  border-radius:12px;
-}
-
-.subject-content.active{
-  display:block;
-}
-
-.lesson-box{
-  background:white;
-  padding:25px;
-  border-radius:15px;
-  margin-bottom:25px;
-  box-shadow:0 4px 15px rgba(0,0,0,.06);
-}
-
-.lesson-box h3{
-  color:var(--green);
-  margin-bottom:12px;
-}
-
-.diagram{
-  background:#f1faf6;
-  border:2px dashed var(--green);
-  padding:30px;
-  border-radius:12px;
-  text-align:center;
-  margin:18px 0;
-  font-size:18px;
-}
-
-.formula{
-  background:#073b2d;
-  color:white;
-  padding:18px;
-  border-radius:10px;
-  margin:12px 0;
-  font-size:20px;
-  text-align:center;
-}
-
-.question{
-  background:#f8fffc;
-  border-left:5px solid var(--green);
-  padding:18px;
-  margin:12px 0;
-  border-radius:8px;
-}
-
-.question button{
-  margin-top:10px;
-  background:var(--green);
-  color:white;
-  border:0;
-  padding:8px 15px;
-  border-radius:6px;
-  cursor:pointer;
-}
-
-.answer{
-  display:none;
-  margin-top:10px;
-  color:var(--dark);
-  font-weight:bold;
-}
-
-.answer.show{display:block}
-
-.timeline{
-  max-width:900px;
-  margin:auto;
-}
-
-.day{
-  background:white;
-  margin:12px 0;
-  padding:18px;
-  border-left:5px solid var(--green);
-  border-radius:8px;
-}
-
-.mock{
-  background:linear-gradient(135deg,var(--dark),var(--green));
-  color:white;
-  padding:40px;
-  border-radius:18px;
-  text-align:center;
-}
-
-.mock h2{margin-bottom:12px}
-
-footer{
-  background:#063b2d;
-  color:white;
-  text-align:center;
-  padding:30px 7%;
-}
-
-footer strong{color:var(--accent)}
-
-@media(max-width:700px){
-  .hero h1{font-size:35px}
-  nav{display:none}
-  section{padding:50px 5%}
-}
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f0f8ff;
+  }
+  header {
+    background: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 25px;
+  }
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-top: 20px;
+  }
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 30px;
+    max-width: 900px;
+    margin: auto;
+  }
+  .card {
+    border: 3px solid #4CAF50;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+  }
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    background: #e8f5e9;
+  }
+  .card h3 {
+    color: #4CAF50;
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+  .topic {
+    background: #FFF3CD;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: #856404;
+    margin: 15px 0;
+    font-size: 16px;
+  }
+  .card p {
+    color: #555;
+    font-size: 15px;
+  }
+  .card a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 25px;
+    background: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+  }
+  .card a:hover {
+    background: #388E3C;
+  }
+  footer {
+    text-align: center;
+    padding: 15px;
+    background: #333;
+    color: white;
+    margin-top: 30px;
+  }
 </style>
 </head>
-
 <body>
 
 <header>
-  <div class="nav">
-    <div class="logo">STUDENT <span>STUDY HUB</span></div>
-
-    <nav>
-      <a href="#subjects">Subjects</a>
-      <a href="#papers">Papers</a>
-      <a href="#formulas">Formulas</a>
-      <a href="#revision">90 Days</a>
-      <a href="#tests">Tests</a>
-      <a href="#career">Career</a>
-    </nav>
-  </div>
+  <h1>📚 Student Study Hub</h1>
+  <p>10th Class 2026 - Important Topics</p>
 </header>
 
-<!-- SECTION 1 -->
-<section class="hero" id="home">
-
-  <div class="badge">CLASS 10 • BOARD EXAM PREPARATION</div>
-
-  <h1>
-    STUDENT <span>STUDY HUB</span>
-  </h1>
-
-  <p>
-    Prepare for the concept, not just the question.
-    Learn concepts, understand diagrams, practice different question patterns,
-    solve problems and face examinations with greater confidence.
-  </p>
-
-  <div class="hero-buttons">
-    <a href="#subjects" class="btn btn-primary">Start Learning</a>
-    <a href="#tests" class="btn btn-secondary">Take a Test</a>
-  </div>
-
-</section>
-
-<!-- SECTION 2 -->
 <section id="subjects">
-
-<div class="section-title">
-  <h2>📚 All Subjects & Demo Lessons</h2>
-  <p>Selected lessons are fully prepared for demonstration.</p>
-</div>
-
-<div class="cards">
-
-  <!-- MATHS -->
-  <div class="card subject-card" onclick="toggleContent('maths')">
-    <div class="icon">📐</div>
-    <h3>Mathematics</h3>
-    <p>Concepts • Formulas • Problems • Different Patterns</p>
-
-    <div id="maths" class="subject-content">
-      <h3>Mathematics Demo Chapter</h3>
-
-      <p>
-        Understand the concept first, then practice the same concept
-        through different types of questions.
-      </p>
-
-      <div class="formula">
-        Example Formula: a² + b² = c²
-      </div>
-
-      <div class="question">
-        <b>Pattern 1:</b> Direct formula-based question
-      </div>
-
-      <div class="question">
-        <b>Pattern 2:</b> Same concept with different wording
-      </div>
-
-      <div class="question">
-        <b>Pattern 3:</b> Application-based problem
-      </div>
+  <h2>📖 Main Subjects</h2>
+  
+  <div class="card-container">
+    
+    <div class="card">
+      <h3>📐 Maths</h3>
+      <div class="topic">Topic: Trigonometry</div>
+      <p>Sin, Cos, Tan Formulas + Heights & Distances Problems</p>
+      <a href="#maths">Open Notes</a>
     </div>
-  </div>
 
-  <!-- BIOLOGY -->
-  <div class="card subject-card" onclick="toggleContent('biology')">
-    <div class="icon">🧬</div>
-    <h3>Biology — Heredity</h3>
-    <p>Lesson • Concepts • Diagrams • Genetics Practice</p>
-
-    <div id="biology" class="subject-content">
-
-      <h3>Heredity — Demo Lesson</h3>
-
-      <p>
-        Heredity is the transmission of characteristics from parents
-        to offspring.
-      </p>
-
-      <div class="diagram">
-        🧬 PARENT TRAITS
-        <br><br>
-        Parent 1 → Genetic information → Offspring
-        <br>
-        Parent 2 → Genetic information → Offspring
-      </div>
-
-      <h3>Important Concepts</h3>
-
-      <p>
-        • Heredity<br>
-        • Variation<br>
-        • Dominant traits<br>
-        • Recessive traits<br>
-        • Mendel's experiments<br>
-        • Inheritance patterns
-      </p>
-
-      <div class="question">
-        <b>Different Question Pattern:</b><br>
-        A question may describe an inherited characteristic without
-        directly using the word "heredity". Identify the concept being tested.
-      </div>
-
+    <div class="card">
+      <h3>🔬 Science</h3>
+      <div class="topic">Topic: Biology - Heredity</div>
+      <p>Genes, DNA, Mendel Laws + Diagrams</p>
+      <a href="#science">Open Notes</a>
     </div>
-  </div>
 
-  <!-- PHYSICS -->
-  <div class="card subject-card" onclick="toggleContent('physics')">
-    <div class="icon">⚡</div>
-    <h3>Physics — Electric Current</h3>
-    <p>Concepts • Circuits • Formulas • Problems</p>
-
-    <div id="physics" class="subject-content">
-
-      <h3>Electric Current — Demo Lesson</h3>
-
-      <p>
-        Learn electric current through concepts, circuit diagrams,
-        formulas and numerical problems.
-      </p>
-
-      <div class="diagram">
-        🔋 Battery → ─── 💡 Bulb ─── → 🔋
-        <br><br>
-        Simple Electric Circuit
-      </div>
-
-      <h3>Important Formula</h3>
-
-      <div class="formula">
-        V = IR
-      </div>
-
-      <p>
-        V = Voltage<br>
-        I = Current<br>
-        R = Resistance
-      </p>
-
-      <h3>Problem Practice</h3>
-
-      <div class="question">
-        <b>Problem:</b><br>
-        A resistor of 5 Ω is connected to a 10 V source.
-        Find the current through the resistor.
-        <br>
-        <button onclick="showAnswer('p1')">Show Solution</button>
-        <div id="p1" class="answer">
-          I = V/R = 10/5 = 2 A
-        </div>
-      </div>
-
-      <div class="question">
-        <b>Different Pattern:</b><br>
-        If the voltage is doubled while resistance remains constant,
-        what happens to the current?
-        <br>
-        <button onclick="showAnswer('p2')">Show Answer</button>
-        <div id="p2" class="answer">
-          Current also doubles because I = V/R.
-        </div>
-      </div>
-
-      <div class="question">
-        <b>Concept Recognition:</b><br>
-        A question gives voltage and resistance but does not mention
-        Ohm's Law. Identify which concept/formula should be applied.
-      </div>
-
+    <div class="card">
+      <h3>🌍 Social</h3>
+      <div class="topic">Topic: Constitution Principles</div>
+      <p>Fundamental Rights, DPSP, Federalism</p>
+      <a href="#social">Open Notes</a>
     </div>
+
   </div>
-
-  <!-- SOCIAL -->
-  <div class="card subject-card" onclick="toggleContent('social')">
-    <div class="icon">🌍</div>
-    <h3>Social Studies</h3>
-    <p>Our Constitution and Principles</p>
-
-    <div id="social" class="subject-content">
-
-      <h3>Our Constitution and Principles</h3>
-
-      <div class="diagram">
-        🏛️ CONSTITUTION
-        <br><br>
-        Rights → Duties → Principles → Democracy
-      </div>
-
-      <h3>Learning Focus</h3>
-
-      <p>
-        • Constitutional values<br>
-        • Fundamental principles<br>
-        • Rights and duties<br>
-        • Democratic values<br>
-        • Important concepts and terms
-      </p>
-
-      <div class="question">
-        <b>Pattern Practice:</b><br>
-        Students practice the same constitutional concept
-        through direct, indirect and application-based questions.
-      </div>
-
-    </div>
-  </div>
-
-</div>
 </section>
-
-<!-- SECTION 3 -->
-<section id="papers">
-
-<div class="section-title">
-  <h2>📝 Previous Year & Sample Papers</h2>
-  <p>Practice questions you may know — and questions you may not have seen before.</p>
-</div>
-
-<div class="cards">
-
-  <div class="card">
-    <div class="icon">📄</div>
-    <h3>Previous Year Papers</h3>
-    <p>Board-style questions for exam familiarity.</p>
-    <button class="btn btn-primary" onclick="alert('Demo: Previous Year Papers section')">
-      Open Demo
-    </button>
-  </div>
-
-  <div class="card">
-    <div class="icon">📑</div>
-    <h3>Sample Papers</h3>
-    <p>Practice new combinations and question patterns.</p>
-    <button class="btn btn-primary" onclick="alert('Demo: Sample Papers section')">
-      Open Demo
-    </button>
-  </div>
-
-  <div class="card">
-    <div class="icon">🔄</div>
-    <h3>Different Question Patterns</h3>
-    <p>One concept presented in multiple ways.</p>
-    <button class="btn btn-primary" onclick="alert('Demo: Question Pattern Practice')">
-      Practice
-    </button>
-  </div>
-
-</div>
-</section>
-
-<!-- SECTION 4 -->
-<section id="formulas">
-
-<div class="section-title">
-  <h2>📐 Important Formulas & Diagrams</h2>
-  <p>Quick revision resources.</p>
-</div>
-
-<div class="cards">
-
-  <div class="card">
-    <div class="icon">⚡</div>
-    <h3>Electric Current</h3>
-    <div class="formula">V = IR</div>
-    <p>Use the formula when voltage, current or resistance is involved.</p>
-  </div>
-
-  <div class="card">
-    <div class="icon">🧬</div>
-    <h3>Biology Diagrams</h3>
-    <div class="diagram">Parent → Trait → Offspring</div>
-    <p>Visual learning for important biological concepts.</p>
-  </div>
-
-  <div class="card">
-    <div class="icon">📊</div>
-    <h3>Quick Revision</h3>
-    <p>Important formulas, definitions, diagrams and key concepts in one place.</p>
-  </div>
-
-</div>
-</section>
-
-<!-- SECTION 5 -->
-<section id="revision">
-
-<div class="section-title">
-  <h2>📅 90-Day Revision Timetable</h2>
-  <p>A structured approach to board examination preparation.</p>
-</div>
-
-<div class="timeline">
-
-  <div class="day">
-    <b>Days 1–30 — Concept Building</b>
-    <p>Complete important lessons and understand core concepts.</p>
-  </div>
-
-  <div class="day">
-    <b>Days 31–60 — Practice</b>
-    <p>Practice formulas, diagrams, previous papers and different question patterns.</p>
-  </div>
-
-  <div class="day">
-    <b>Days 61–80 — Testing</b>
-    <p>Take chapter tests, subject tests and mock examinations.</p>
-  </div>
-
-  <div class="day">
-    <b>Days 81–90 — Final Revision</b>
-    <p>Revise weak areas, formulas, diagrams and frequently tested concepts.</p>
-  </div>
-
-</div>
-</section>
-
-<!-- SECTION 6 -->
-<section>
-
-<div class="section-title">
-  <h2>🎥 Concept Videos</h2>
-  <p>Learn difficult concepts visually.</p>
-</div>
-
-<div class="cards">
-
-  <div class="card">
-    <div class="icon">▶️</div>
-    <h3>Biology</h3>
-    <p>Heredity concept video resources.</p>
-    <button class="btn btn-primary" onclick="alert('Add your Biology video link here')">
-      Watch Demo
-    </button>
-  </div>
-
-  <div class="card">
-    <div class="icon">⚡</div>
-    <h3>Physics</h3>
-    <p>Electric Current concept video resources.</p>
-    <button class="btn btn-primary" onclick="alert('Add your Physics video link here')">
-      Watch Demo
-    </button>
-  </div>
-
-  <div class="card">
-    <div class="icon">📐</div>
-    <h3>Mathematics</h3>
-    <p>Visual explanations for difficult concepts.</p>
-    <button class="btn btn-primary" onclick="alert('Add your Maths video link here')">
-      Watch Demo
-    </button>
-  </div>
-
-</div>
-</section>
-
-<!-- SECTION 7 -->
-<section id="tests">
-
-<div class="section-title">
-  <h2>🎯 Self & Mock Exams</h2>
-  <p>Practice. Test. Analyse. Improve.</p>
-</div>
-
-<div class="mock">
-
-  <h2>📝 Demo Mock Test</h2>
-
-  <p>
-    Test your understanding instead of simply testing your memory.
-  </p>
-
-  <br>
-
-  <button class="btn btn-secondary"
-          onclick="startTest()">
-    Start Demo Test
-  </button>
-
-  <div id="testResult"></div>
-
-</div>
-</section>
-
-<!-- SECTION 8 -->
-<section>
-
-<div class="section-title">
-  <h2>🏆 Board Exam Tips & Tricks</h2>
-  <p>Simple strategies for better exam readiness.</p>
-</div>
-
-<div class="cards">
-
-  <div class="card">
-    <div class="icon">🔍</div>
-    <h3>Read the Question Carefully</h3>
-    <p>Do not answer only because the question looks familiar.</p>
-  </div>
-
-  <div class="card">
-    <div class="icon">🧠</div>
-    <h3>Identify the Concept</h3>
-    <p>Ask yourself: “Which concept is this question testing?”</p>
-  </div>
-
-  <div class="card">
-    <div class="icon">⏱️</div>
-    <h3>Manage Time</h3>
-    <p>Practice timed tests before the board examination.</p>
-  </div>
-
-  <div class="card">
-    <div class="icon">⚠️</div>
-    <h3>Avoid Common Mistakes</h3>
-    <p>Review wrong answers and understand why they were wrong.</p>
-  </div>
-
-</div>
-</section>
-
-<!-- SECTION 9 -->
-<section id="career">
-
-<div class="section-title">
-  <h2>💡 Motivation Corner & Career Guidance</h2>
-  <p>Your Class 10 journey is an important step toward your future.</p>
-</div>
-
-<div class="cards">
-
-  <div class="card">
-    <div class="icon">🌟</div>
-    <h3>Motivation Corner</h3>
-    <p>
-      Your result is important, but your learning, consistency
-      and confidence matter too.
-    </p>
-  </div>
-
-  <div class="card">
-    <div class="icon">🎓</div>
-    <h3>After SSC</h3>
-    <p>
-      Explore different academic and career pathways after Class 10.
-    </p>
-  </div>
-
-  <div class="card">
-    <div class="icon">🚀</div>
-    <h3>Future Planning</h3>
-    <p>
-      Understand your interests, strengths and available opportunities.
-    </p>
-  </div>
-
-</div>
-</section>
-
-<!-- SECTION 10 -->
-<section>
-
-<div class="section-title">
-  <h2>📩 Contact & Feedback</h2>
-  <p>Your feedback helps us improve Student Study Hub.</p>
-</div>
-
-<div class="cards">
-
-  <div class="card">
-    <div class="icon">📞</div>
-    <h3>Contact</h3>
-    <p>SS CAREER HUB</p>
-    <p>Shaik Sharif</p>
-  </div>
-
-  <div class="card">
-    <div class="icon">💬</div>
-    <h3>Feedback</h3>
-    <p>Teachers, students and parents can share their suggestions.</p>
-    <button class="btn btn-primary"
-            onclick="alert('Feedback form can be connected here.')">
-      Give Feedback
-    </button>
-  </div>
-
-</div>
-</section>
-
-<!-- FOOTER -->
 
 <footer>
-
-  <p>
-    <strong>STUDENT STUDY HUB</strong>
-  </p>
-
-  <p>
-    Prepare for the concept, not just the question.
-  </p>
-
-  <br>
-
-  <p>
-    © 2026 Student Study Hub. All Rights Reserved.
-  </p>
-
-  <p>
-    A Project by <strong>SS CAREER HUB — Shaik Sharif</strong>
-  </p>
-
+  <p>Made by 10th Class Student | 2026 Batch 💚</p>
 </footer>
-
-<script>
-
-function toggleContent(id){
-
-  const element = document.getElementById(id);
-
-  element.classList.toggle("active");
-
-}
-
-function showAnswer(id){
-
-  const element = document.getElementById(id);
-
-  element.classList.toggle("show");
-
-}
-
-function startTest(){
-
-  const result = document.getElementById("testResult");
-
-  result.innerHTML = `
-    <div style="
-      margin-top:25px;
-      background:white;
-      color:#07543f;
-      padding:25px;
-      border-radius:12px;
-    ">
-
-      <h3>Demo Question</h3>
-
-      <p>
-        If V = 10 V and R = 5 Ω, what is the current?
-      </p>
-
-      <button class="btn btn-primary"
-        onclick="checkTest(true)">
-        2 A
-      </button>
-
-      <button class="btn btn-secondary"
-        onclick="checkTest(false)">
-        5 A
-      </button>
-
-      <div id="testAnswer"></div>
-
-    </div>
-  `;
-}
-
-function checkTest(correct){
-
-  const answer = document.getElementById("testAnswer");
-
-  if(correct){
-
-    answer.innerHTML =
-      "<br><b>✅ Correct! I = V/R = 10/5 = 2 A</b>";
-
-  }else{
-
-    answer.innerHTML =
-      "<br><b>❌ Try again. Remember I = V/R.</b>";
-
-  }
-
-}
-
-</script>
 
 </body>
 </html>
