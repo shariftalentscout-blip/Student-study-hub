@@ -3,1868 +3,936 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>INFINITY ONE | Smart School Management</title>
+<title>Student Study Hub | SS Career Hub</title>
 
 <style>
+:root{
+    --green:#087f5b;
+    --dark:#064d3b;
+    --light:#eaf8f2;
+    --gold:#f4c542;
+    --white:#fff;
+    --text:#17352c;
+    --gray:#687871;
+    --bg:#f5fbf8;
+    --red:#c0392b;
+}
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-:root{
-    --navy:#0B1630;
-    --navy2:#111E3D;
-    --purple:#6C3BFF;
-    --purple2:#8B5CFF;
-    --blue:#2196F3;
-    --white:#FFFFFF;
-    --muted:#AAB4C8;
-    --gold:#F5B942;
-    --green:#27C281;
-    --red:#FF5C6C;
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-    min-height:100vh;
     font-family:Arial,Helvetica,sans-serif;
-    background:var(--navy);
-    color:var(--white);
-}
-
-/* =========================
-   WELCOME SCREEN
-========================= */
-
-#welcomeScreen{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:30px;
-    position:relative;
-    overflow:hidden;
-}
-
-#welcomeScreen:before{
-    content:"";
-    position:absolute;
-    width:500px;
-    height:500px;
-    border-radius:50%;
-    background:var(--purple);
-    opacity:.08;
-    filter:blur(120px);
-    top:-180px;
-    right:-150px;
-}
-
-#welcomeScreen:after{
-    content:"";
-    position:absolute;
-    width:400px;
-    height:400px;
-    border-radius:50%;
-    background:var(--blue);
-    opacity:.06;
-    filter:blur(110px);
-    bottom:-180px;
-    left:-150px;
-}
-
-.container{
-    width:100%;
-    max-width:1100px;
-    display:grid;
-    grid-template-columns:1.1fr .9fr;
-    gap:50px;
-    align-items:center;
-    position:relative;
-    z-index:2;
-}
-
-.brand-section{
-    padding:20px;
-}
-
-.logo{
-    width:100%;
-    max-width:650px;
-    display:block;
-    margin-bottom:25px;
-    border-radius:18px;
-    box-shadow:0 20px 60px rgba(0,0,0,.35);
-}
-
-.brand-name{
-    font-size:42px;
-    font-weight:800;
-    letter-spacing:2px;
-    margin-bottom:10px;
-}
-
-.brand-name span{
-    color:var(--purple2);
-}
-
-.tagline{
-    font-size:20px;
-    color:#D9DEEA;
-    margin-bottom:18px;
-}
-
-.sub-tagline{
-    font-size:16px;
-    color:var(--muted);
-    line-height:1.7;
-}
-
-.badges{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-top:25px;
-}
-
-.badge{
-    padding:8px 13px;
-    border:1px solid rgba(139,92,255,.4);
-    border-radius:30px;
-    color:#E6E9F0;
-    font-size:13px;
-    background:rgba(255,255,255,.03);
-}
-
-.login-card{
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.12);
-    border-radius:24px;
-    padding:35px;
-    box-shadow:0 25px 70px rgba(0,0,0,.35);
-    backdrop-filter:blur(15px);
-}
-
-.login-title{
-    font-size:25px;
-    font-weight:700;
-    margin-bottom:8px;
-}
-
-.login-subtitle{
-    color:var(--muted);
-    font-size:14px;
-    margin-bottom:28px;
-}
-
-.roles{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
-}
-
-.role-btn{
-    border:1px solid rgba(255,255,255,.12);
-    background:rgba(255,255,255,.05);
-    color:white;
-    padding:22px 15px;
-    border-radius:16px;
-    cursor:pointer;
-    transition:.25s;
-    font-size:16px;
-    font-weight:600;
-}
-
-.role-btn:hover{
-    transform:translateY(-3px);
-    border-color:var(--purple2);
-    background:rgba(108,59,255,.18);
-}
-
-.role-icon{
-    display:block;
-    font-size:28px;
-    margin-bottom:9px;
-}
-
-.admin{
-    border-top:3px solid var(--gold);
-}
-
-.teacher{
-    border-top:3px solid var(--purple2);
-}
-
-.student{
-    border-top:3px solid var(--blue);
-}
-
-.parent{
-    border-top:3px solid white;
-}
-
-.footer-text{
-    text-align:center;
-    color:#7F8BA3;
-    font-size:12px;
-    margin-top:28px;
-}
-
-/* =========================
-   DASHBOARD
-========================= */
-
-#dashboard{
-    display:none;
-    min-height:100vh;
-    background:#F4F6FA;
-    color:#17213A;
-}
-
-/* Sidebar */
-
-.sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-    width:245px;
-    height:100vh;
-    background:var(--navy);
-    color:white;
-    padding:22px 15px;
-    z-index:20;
-    overflow-y:auto;
-}
-
-.side-brand{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:5px 10px 25px;
-    border-bottom:1px solid rgba(255,255,255,.1);
-    margin-bottom:20px;
-}
-
-.side-logo{
-    width:42px;
-    height:42px;
-    object-fit:cover;
-    border-radius:10px;
-}
-
-.side-brand strong{
-    font-size:18px;
-}
-
-.side-brand span{
-    display:block;
-    font-size:10px;
-    color:#AAB4C8;
-    margin-top:3px;
-}
-
-.menu-title{
-    font-size:10px;
-    color:#7F8BA3;
-    text-transform:uppercase;
-    letter-spacing:1px;
-    margin:18px 10px 8px;
-}
-
-.menu-item{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    width:100%;
-    padding:11px 12px;
-    margin-bottom:4px;
-    border-radius:9px;
-    color:#DDE3F0;
-    cursor:pointer;
-    border:0;
-    background:transparent;
-    text-align:left;
-    font-size:13px;
-}
-
-.menu-item:hover,
-.menu-item.active{
-    background:rgba(108,59,255,.25);
-    color:white;
-}
-
-.menu-item span{
-    font-size:18px;
-}
-
-/* Main */
-
-.main{
-    margin-left:245px;
-    min-height:100vh;
-}
-
-.topbar{
-    height:72px;
-    background:white;
-    border-bottom:1px solid #E4E8F0;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 30px;
-    position:sticky;
-    top:0;
-    z-index:10;
-}
-
-.top-title h2{
-    font-size:21px;
-    margin-bottom:4px;
-}
-
-.top-title p{
-    font-size:12px;
-    color:#7A8498;
-}
-
-.top-actions{
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
-
-.notification{
-    width:38px;
-    height:38px;
-    border-radius:10px;
-    border:1px solid #E4E8F0;
-    background:white;
-    cursor:pointer;
-    font-size:18px;
-}
-
-.admin-profile{
-    display:flex;
-    align-items:center;
-    gap:9px;
-}
-
-.avatar{
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    background:var(--purple);
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-}
-
-.content{
-    padding:28px;
-}
-
-/* Welcome */
-
-.dashboard-welcome{
-    background:linear-gradient(110deg,#111E3D,#332078);
-    border-radius:18px;
-    padding:28px;
-    color:white;
-    margin-bottom:25px;
-    position:relative;
-    overflow:hidden;
-}
-
-.dashboard-welcome:after{
-    content:"∞";
-    position:absolute;
-    right:35px;
-    top:-35px;
-    font-size:180px;
-    opacity:.06;
-}
-
-.dashboard-welcome h1{
-    font-size:25px;
-    margin-bottom:8px;
-}
-
-.dashboard-welcome p{
-    color:#D5DCEF;
-    font-size:14px;
-}
-
-/* Stats */
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
-    margin-bottom:25px;
-}
-
-.stat-card{
-    background:white;
-    border:1px solid #E4E8F0;
-    border-radius:15px;
-    padding:20px;
-    position:relative;
-}
-
-.stat-icon{
-    width:43px;
-    height:43px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:11px;
-    background:#F0ECFF;
-    font-size:21px;
-    margin-bottom:15px;
-}
-
-.stat-card h3{
-    font-size:25px;
-    margin-bottom:5px;
-}
-
-.stat-card p{
-    font-size:12px;
-    color:#7A8498;
-}
-
-.stat-change{
-    position:absolute;
-    right:16px;
-    top:18px;
-    font-size:11px;
-    color:var(--green);
-}
-
-/* Grid */
-
-.dashboard-grid{
-    display:grid;
-    grid-template-columns:1.5fr 1fr;
-    gap:20px;
-}
-
-.panel{
-    background:white;
-    border:1px solid #E4E8F0;
-    border-radius:15px;
-    padding:22px;
-}
-
-.panel-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:20px;
-}
-
-.panel-header h3{
-    font-size:16px;
-}
-
-.panel-header button{
-    border:0;
-    background:#F0ECFF;
-    color:var(--purple);
-    padding:7px 11px;
-    border-radius:7px;
-    cursor:pointer;
-    font-size:11px;
-}
-
-.activity{
-    display:flex;
-    gap:13px;
-    padding:13px 0;
-    border-bottom:1px solid #EEF1F5;
-}
-
-.activity:last-child{
-    border-bottom:0;
-}
-
-.activity-icon{
-    width:38px;
-    height:38px;
-    background:#F3F5F9;
-    border-radius:10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.activity-text strong{
-    display:block;
-    font-size:13px;
-    margin-bottom:4px;
-}
-
-.activity-text small{
-    color:#8A94A7;
-    font-size:11px;
-}
-
-/* Performance */
-
-.performance{
-    margin-bottom:16px;
-}
-
-.performance-label{
-    display:flex;
-    justify-content:space-between;
-    font-size:12px;
-    margin-bottom:7px;
-}
-
-.progress{
-    height:8px;
-    border-radius:20px;
-    background:#EEF1F5;
-    overflow:hidden;
-}
-
-.progress div{
-    height:100%;
-    border-radius:20px;
-    background:var(--purple);
-}
-
-.ai-box{
-    margin-top:18px;
-    background:#F7F4FF;
-    border:1px solid #E8DEFF;
-    border-radius:12px;
-    padding:15px;
-}
-
-.ai-box strong{
-    display:block;
-    color:var(--purple);
-    font-size:13px;
-    margin-bottom:6px;
-}
-
-.ai-box p{
-    font-size:11px;
-    color:#6F7890;
+    background:var(--bg);
+    color:var(--text);
     line-height:1.6;
 }
 
-/* Quick modules */
-
-.quick-modules{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:12px;
-    margin-top:20px;
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:linear-gradient(135deg,var(--dark),var(--green));
+    padding:16px 6%;
+    box-shadow:0 4px 18px rgba(0,0,0,.15);
 }
 
-.quick-module{
-    background:white;
-    border:1px solid #E4E8F0;
-    border-radius:12px;
-    padding:17px 10px;
+.navbar{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    color:white;
+    font-size:23px;
+    font-weight:800;
+}
+
+.logo span{
+    color:var(--gold);
+}
+
+nav{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+}
+
+nav a:hover{
+    color:var(--gold);
+}
+
+.hero{
+    min-height:85vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     text-align:center;
+    padding:70px 6%;
+    background:
+    radial-gradient(circle at top right,#d8f4e9,transparent 35%),
+    linear-gradient(135deg,#effbf6,#fff);
+}
+
+.hero-content{
+    max-width:900px;
+}
+
+.badge{
+    display:inline-block;
+    background:var(--green);
+    color:white;
+    padding:8px 18px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:56px;
+    line-height:1.1;
+    color:var(--dark);
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    color:var(--green);
+}
+
+.hero p{
+    max-width:780px;
+    margin:auto;
+    color:var(--gray);
+    font-size:18px;
+}
+
+.hero-buttons{
+    margin-top:30px;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-block;
+    padding:11px 20px;
+    border-radius:8px;
+    border:none;
     cursor:pointer;
+    font-weight:bold;
+    text-decoration:none;
     transition:.2s;
 }
 
-.quick-module:hover{
-    transform:translateY(-2px);
-    border-color:#CFC2FF;
-    box-shadow:0 8px 20px rgba(30,40,70,.06);
+.btn-primary{
+    background:var(--green);
+    color:white;
 }
 
-.quick-module div{
-    font-size:23px;
+.btn-primary:hover{
+    background:var(--dark);
+    transform:translateY(-2px);
+}
+
+.btn-outline{
+    background:white;
+    color:var(--green);
+    border:2px solid var(--green);
+}
+
+.btn-outline:hover{
+    background:var(--light);
+}
+
+.open-lesson-btn{
+    padding:7px 13px;
+    font-size:12px;
+}
+
+section{
+    padding:70px 6%;
+}
+
+.section-title{
+    text-align:center;
+    max-width:850px;
+    margin:0 auto 45px;
+}
+
+.section-title h2{
+    font-size:34px;
+    color:var(--dark);
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:var(--gray);
+}
+
+.cards{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:22px;
+}
+
+.card{
+    background:white;
+    padding:27px;
+    border-radius:16px;
+    border-top:4px solid var(--green);
+    box-shadow:0 5px 20px rgba(0,0,0,.07);
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 28px rgba(0,0,0,.11);
+}
+
+.card-icon{
+    font-size:38px;
+    margin-bottom:12px;
+}
+
+.card h3{
+    color:var(--dark);
     margin-bottom:8px;
 }
 
-.quick-module span{
-    font-size:11px;
-    color:#536078;
+.card p{
+    color:var(--gray);
 }
 
-/* Responsive */
+.subject-card{
+    cursor:default;
+}
 
-@media(max-width:950px){
+.subject-tag{
+    display:inline-block;
+    background:var(--light);
+    color:var(--green);
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
 
-    .container{
-        grid-template-columns:1fr;
-        max-width:650px;
-    }
+.lesson-area{
+    display:none;
+    margin-top:20px;
+    padding:22px;
+    background:var(--light);
+    border-radius:12px;
+}
 
-    .stats{
-        grid-template-columns:repeat(2,1fr);
-    }
+.lesson-area.active{
+    display:block;
+}
 
-    .dashboard-grid{
-        grid-template-columns:1fr;
-    }
+.lesson-area h4{
+    color:var(--dark);
+    margin:22px 0 10px;
+}
 
-    .quick-modules{
-        grid-template-columns:repeat(3,1fr);
-    }
+.lesson-area ul{
+    padding-left:22px;
+}
+
+.lesson-area li{
+    margin:6px 0;
+}
+
+.formula{
+    margin:15px 0;
+    padding:17px;
+    background:var(--dark);
+    color:white;
+    border-radius:10px;
+    text-align:center;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.formula small{
+    display:block;
+    margin-top:8px;
+    font-size:13px;
+    font-weight:normal;
+    opacity:.9;
+}
+
+.diagram{
+    margin:18px 0;
+    padding:28px;
+    background:white;
+    border:2px dashed var(--green);
+    border-radius:12px;
+    text-align:center;
+}
+
+.diagram-title{
+    color:var(--dark);
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.triangle{
+    font-size:17px;
+    line-height:1.5;
+    font-family:monospace;
+}
+
+.step{
+    background:white;
+    border-left:5px solid var(--green);
+    padding:16px;
+    margin:12px 0;
+    border-radius:8px;
+}
+
+.step strong{
+    color:var(--dark);
+}
+
+.question{
+    background:white;
+    border-left:5px solid var(--green);
+    padding:17px;
+    margin:12px 0;
+    border-radius:8px;
+}
+
+.answer{
+    display:none;
+    margin-top:10px;
+    color:var(--dark);
+    font-weight:bold;
+}
+
+.answer.show{
+    display:block;
+}
+
+.warning{
+    background:#fff4f2;
+    border-left:5px solid var(--red);
+    padding:17px;
+    border-radius:8px;
+    margin:15px 0;
+}
+
+.quick-box{
+    background:linear-gradient(135deg,var(--dark),var(--green));
+    color:white;
+    padding:22px;
+    border-radius:12px;
+    margin-top:20px;
+}
+
+.quick-box h4{
+    color:white;
+    margin-top:0;
+}
+
+.feature-grid{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.mock-section{
+    background:linear-gradient(135deg,var(--dark),var(--green));
+    color:white;
+}
+
+.mock-box{
+    max-width:900px;
+    margin:auto;
+    text-align:center;
+}
+
+.mock-box h2{
+    font-size:34px;
+    margin-bottom:12px;
+}
+
+.mock-question{
+    margin-top:25px;
+    background:white;
+    color:var(--dark);
+    padding:25px;
+    border-radius:12px;
+    text-align:left;
+}
+
+footer{
+    background:#04382b;
+    color:white;
+    text-align:center;
+    padding:35px 6%;
+}
+
+footer .brand{
+    color:var(--gold);
+    font-size:20px;
+    font-weight:bold;
+}
+
+footer p{
+    margin-top:8px;
+    font-size:14px;
 }
 
 @media(max-width:700px){
 
-    #welcomeScreen{
-        padding:18px;
-    }
-
-    .brand-section{
-        text-align:center;
-        padding:5px;
-    }
-
-    .logo{
-        margin:auto auto 20px;
-    }
-
-    .brand-name{
-        font-size:30px;
-    }
-
-    .tagline{
-        font-size:17px;
-    }
-
-    .badges{
-        justify-content:center;
-    }
-
-    .sidebar{
-        width:70px;
-        padding:15px 8px;
-    }
-
-    .side-brand{
-        justify-content:center;
-        padding:5px 0 18px;
-    }
-
-    .side-brand div,
-    .menu-title,
-    .menu-item strong{
+    nav{
         display:none;
     }
 
-    .menu-item{
-        justify-content:center;
-        padding:12px 5px;
+    .hero{
+        min-height:75vh;
+        padding:55px 5%;
     }
 
-    .main{
-        margin-left:70px;
+    .hero h1{
+        font-size:38px;
     }
 
-    .topbar{
-        padding:0 15px;
+    .hero p{
+        font-size:16px;
     }
 
-    .content{
-        padding:18px;
+    section{
+        padding:55px 5%;
     }
 
-    .quick-modules{
-        grid-template-columns:repeat(2,1fr);
-    }
-}
-
-@media(max-width:480px){
-
-    .roles{
-        grid-template-columns:1fr;
-    }
-
-    .login-card{
-        padding:22px;
-    }
-
-    .stats{
-        grid-template-columns:1fr 1fr;
-        gap:10px;
-    }
-
-    .stat-card{
-        padding:15px;
-    }
-
-    .stat-card h3{
-        font-size:21px;
-    }
-
-    .top-title h2{
-        font-size:17px;
-    }
-
-    .admin-profile{
-        display:none;
+    .section-title h2{
+        font-size:28px;
     }
 }
-
-/* INFINITY ONE STUDENT UI */
-#studentManagement{display:none;padding:28px;color:#17213A}.student-page-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}.student-page-head h1{font-size:25px;margin:10px 0 5px}.student-page-head p{font-size:12px;color:#7A8498}.io-btn{border:0;border-radius:10px;padding:11px 17px;font-weight:700;cursor:pointer}.io-primary{background:#6C3BFF;color:#fff}.io-back{background:#EEF1F7;color:#42506A}.student-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:20px}.student-card{background:#fff;border:1px solid #E4E8F0;border-radius:14px;padding:18px;display:flex;gap:12px;align-items:center}.student-card strong{display:block;font-size:21px}.student-card small{color:#7A8498;font-size:11px}.student-card-icon{font-size:22px;background:#F0ECFF;padding:10px;border-radius:10px}.student-list{background:#fff;border:1px solid #E4E8F0;border-radius:15px;padding:20px}.student-list-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.student-list-head h2{font-size:17px}.student-list-head p{font-size:11px;color:#8A94A7}.student-search{padding:10px 12px;border:1px solid #DCE1E9;border-radius:9px}.student-table{width:100%;border-collapse:collapse}.student-table th{text-align:left;padding:12px;color:#7A8498;font-size:10px;border-bottom:1px solid #EEF1F5}.student-table td{padding:13px 12px;border-bottom:1px solid #F0F2F6;font-size:12px}.student-person{display:flex;align-items:center;gap:9px}.student-avatar{width:38px;height:38px;border-radius:10px;background:#EEE9FF;color:#6135DF;display:flex;align-items:center;justify-content:center;font-weight:bold}.student-person small{display:block;color:#929BAD;font-size:10px}.student-active{background:#E7F8EE;color:#158548;padding:5px 9px;border-radius:20px;font-size:9px}.student-table-wrap{overflow:auto}.student-modal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(5,10,25,.8);padding:20px;overflow:auto}.student-modal-box{max-width:900px;margin:20px auto;background:#fff;border-radius:20px;overflow:hidden;color:#17213A}.student-modal-head{padding:22px 25px;background:linear-gradient(110deg,#111E3D,#332078);color:#fff;display:flex;justify-content:space-between}.student-modal-head h2{margin:7px 0 4px}.student-modal-head p{margin:0;color:#D1D7E7;font-size:12px}.student-close{border:0;background:rgba(255,255,255,.15);color:#fff;font-size:25px;width:40px;height:40px;border-radius:10px}.student-photo{margin:25px;padding:20px;background:#F8F9FC;border:1px solid #E5E8EF;border-radius:15px;display:flex;gap:20px;align-items:center}.student-photo-preview{width:110px;height:110px;border-radius:15px;background:#EEE9FF;border:2px dashed #BCAEFF;display:flex;align-items:center;justify-content:center;font-size:40px;overflow:hidden}.student-photo-preview img{width:100%;height:100%;object-fit:cover}.student-upload{display:inline-block;background:#6C3BFF;color:#fff;padding:10px 15px;border-radius:9px;font-size:12px;font-weight:bold;cursor:pointer}.student-upload input{display:none}.student-section{padding:0 25px 25px}.student-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.student-field label{display:block;font-size:11px;color:#68748A;font-weight:bold;margin-bottom:6px}.student-field input,.student-field select,.student-field textarea{width:100%;padding:11px 12px;border:1px solid #DCE1E9;border-radius:9px;box-sizing:border-box}.student-full{margin-top:14px}.student-actions{padding:17px 25px;background:#FAFBFC;border-top:1px solid #E8EBF1;display:flex;justify-content:flex-end;gap:10px}@media(max-width:700px){.student-cards{grid-template-columns:1fr 1fr}.student-page-head{flex-direction:column;align-items:flex-start}.student-form-grid{grid-template-columns:1fr}.student-photo{flex-direction:column;text-align:center}}
-
-.student-action{border:1px solid #DDE2EC;background:#fff;color:#4D3AB7;border-radius:7px;padding:6px 8px;margin:2px;font-size:9px;font-weight:700;cursor:pointer}.student-action:hover{background:#6C3BFF;color:#fff}
-.student-profile-modal{display:none;position:fixed;inset:0;z-index:10000;background:rgba(5,10,25,.82);padding:20px;overflow:auto}
-.student-profile-box{max-width:720px;margin:30px auto;background:#fff;border-radius:18px;overflow:hidden;color:#17213A}
-.student-profile-head{background:linear-gradient(110deg,#111E3D,#332078);color:#fff;padding:22px;display:flex;justify-content:space-between}
-.student-profile-body{padding:24px}.profile-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.profile-item{background:#F7F8FB;border:1px solid #E7EAF0;border-radius:10px;padding:13px}
-.profile-item small{display:block;color:#8490A4;font-size:10px;margin-bottom:5px}.profile-item strong{font-size:13px}
-@media(max-width:600px){.profile-grid{grid-template-columns:1fr}.student-action{font-size:8px;padding:5px}}
-
-
-.feature-modal{display:none;position:fixed;inset:0;z-index:10001;background:rgba(5,10,25,.82);padding:20px;overflow:auto}
-.feature-box{max-width:800px;margin:30px auto;background:#fff;border-radius:18px;overflow:hidden;color:#17213A}
-.feature-head{background:linear-gradient(110deg,#111E3D,#332078);color:#fff;padding:22px;display:flex;justify-content:space-between;align-items:center}
-.feature-head h2{margin:6px 0 0;font-size:19px}.feature-body{padding:25px}
-.feature-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
-.feature-summary div{background:#F7F8FB;border:1px solid #E6EAF1;border-radius:12px;padding:16px}
-.feature-summary small{display:block;color:#7C879A;font-size:10px;margin-bottom:7px}.feature-summary strong{font-size:20px;color:#4E31B5}
-.feature-table{width:100%;border-collapse:collapse;margin-top:12px}.feature-table th,.feature-table td{text-align:left;padding:12px;border-bottom:1px solid #ECEFF4;font-size:12px}
-.present{color:#16864D;background:#E7F8EE;padding:5px 9px;border-radius:20px;font-weight:bold;font-size:10px}.absent{color:#C13C3C;background:#FDECEC;padding:5px 9px;border-radius:20px;font-weight:bold;font-size:10px}
-.passport-card{text-align:center}.passport-icon{font-size:50px}.passport-card h2{margin:10px 0 5px}.passport-card p{color:#7C879A;margin-bottom:22px}
-.passport-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:left}.passport-grid div{padding:15px;background:#F7F8FB;border-radius:10px}.passport-grid small{display:block;color:#7C879A;font-size:10px;margin-bottom:6px}.passport-grid strong{font-size:13px}
-@media(max-width:600px){.feature-summary,.passport-grid{grid-template-columns:1fr}.feature-body{padding:18px}}
-
-
-#teacherManagement{display:none;padding:28px;color:#17213A}
-.teacher-page-head{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:22px}
-.teacher-page-head h1{font-size:25px;margin:10px 0 5px}.teacher-page-head p{font-size:12px;color:#7A8498}
-.teacher-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:20px}
-.teacher-card{background:#fff;border:1px solid #E4E8F0;border-radius:14px;padding:18px;display:flex;gap:12px;align-items:center}
-.teacher-card-icon{width:42px;height:42px;border-radius:11px;background:#F0ECFF;display:flex;align-items:center;justify-content:center;font-size:21px}
-.teacher-card strong{display:block;font-size:21px}.teacher-card small{color:#7A8498;font-size:11px}
-.teacher-list{background:#fff;border:1px solid #E4E8F0;border-radius:15px;padding:20px}
-.teacher-list-head{margin-bottom:16px}.teacher-list-head h2{font-size:17px;margin-bottom:4px}.teacher-list-head p{font-size:11px;color:#8A94A7}
-.teacher-table-wrap{overflow:auto}.teacher-table{width:100%;border-collapse:collapse;min-width:900px}
-.teacher-table th{text-align:left;padding:12px;color:#7A8498;font-size:10px;border-bottom:1px solid #EEF1F5}
-.teacher-table td{padding:13px 12px;border-bottom:1px solid #F0F2F6;font-size:12px}
-.teacher-person{display:flex;align-items:center;gap:9px}.teacher-avatar{width:38px;height:38px;border-radius:10px;background:#EEE9FF;color:#6135DF;display:flex;align-items:center;justify-content:center;font-weight:bold}
-.teacher-person small{display:block;color:#929BAD;margin-top:3px;font-size:10px}.teacher-active{background:#E7F8EE;color:#158548;padding:5px 9px;border-radius:20px;font-size:9px;font-weight:bold}
-.teacher-action{border:1px solid #DDE2EC;background:#fff;color:#4D3AB7;border-radius:7px;padding:6px 8px;margin:2px;font-size:9px;font-weight:700;cursor:pointer}.teacher-action:hover{background:#6C3BFF;color:#fff}
-#teacherModal,#teacherProfileModal,#teacherFeatureModal{display:none;position:fixed;inset:0;z-index:10020;background:rgba(5,10,25,.82);padding:20px;overflow:auto}
-.teacher-modal-box,.teacher-profile-box,.teacher-feature-box{max-width:850px;margin:25px auto;background:#fff;border-radius:20px;overflow:hidden;color:#17213A}
-.teacher-modal-head,.teacher-profile-head,.teacher-feature-head{padding:22px 25px;background:linear-gradient(110deg,#111E3D,#332078);color:#fff;display:flex;justify-content:space-between;align-items:center}
-.teacher-modal-head h2,.teacher-profile-head h2,.teacher-feature-head h2{margin:7px 0 4px}.teacher-modal-head p{margin:0;color:#D1D7E7;font-size:12px}
-.teacher-section{padding:22px 25px}.teacher-section h3{font-size:15px;margin-bottom:15px}.teacher-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.teacher-field label{display:block;font-size:11px;color:#68748A;font-weight:bold;margin-bottom:6px}
-.teacher-field input,.teacher-field select,.teacher-field textarea{width:100%;padding:11px 12px;border:1px solid #DCE1E9;border-radius:9px;outline:0;font-size:12px}
-.teacher-actions{padding:17px 25px;background:#FAFBFC;border-top:1px solid #E8EBF1;display:flex;justify-content:flex-end;gap:10px}
-.teacher-profile-body,.teacher-feature-body{padding:25px}.teacher-profile-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.teacher-profile-item{background:#F7F8FB;border:1px solid #E7EAF0;border-radius:10px;padding:13px}.teacher-profile-item small{display:block;color:#8490A4;font-size:10px;margin-bottom:5px}.teacher-profile-item strong{font-size:13px}
-.teacher-feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}.teacher-feature-grid div{background:#F7F8FB;border:1px solid #E6EAF1;border-radius:12px;padding:15px}.teacher-feature-grid small{display:block;color:#7C879A;font-size:10px;margin-bottom:6px}.teacher-feature-grid strong{font-size:18px;color:#4E31B5}
-.teacher-feature-table{width:100%;border-collapse:collapse}.teacher-feature-table th,.teacher-feature-table td{text-align:left;padding:12px;border-bottom:1px solid #ECEFF4;font-size:12px}.teacher-good{color:#16864D;background:#E7F8EE;padding:5px 9px;border-radius:20px;font-size:10px;font-weight:bold}
-@media(max-width:950px){.teacher-cards{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){#teacherManagement{padding:18px}.teacher-page-head{align-items:flex-start;flex-direction:column}.teacher-cards{grid-template-columns:1fr 1fr}.teacher-form-grid,.teacher-profile-grid,.teacher-feature-grid{grid-template-columns:1fr}.teacher-actions{flex-direction:column}}
-
-
-/* =========================
-   PARENT PORTAL
-========================= */
-#parentPortal{display:none;padding:28px;color:#17213A}
-.parent-page-head{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:22px}
-.parent-page-head h1{font-size:25px;margin:10px 0 5px}.parent-page-head p{font-size:12px;color:#7A8498}
-.parent-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:20px}
-.parent-summary-card{background:#fff;border:1px solid #E4E8F0;border-radius:14px;padding:18px}
-.parent-summary-card small{display:block;color:#7A8498;font-size:10px;margin-bottom:7px}.parent-summary-card strong{font-size:21px;color:#4E31B5}
-.parent-child-card{background:linear-gradient(110deg,#111E3D,#332078);color:#fff;border-radius:16px;padding:22px;display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:20px}
-.parent-child-left{display:flex;align-items:center;gap:14px}.child-avatar{width:58px;height:58px;border-radius:15px;background:#fff;color:#5634B9;display:flex;align-items:center;justify-content:center;font-size:25px;font-weight:800}
-.parent-child-card h2{margin:0 0 5px;font-size:20px}.parent-child-card p{margin:0;color:#D4D8E8;font-size:11px}
-.parent-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
-.parent-action{border:1px solid #E4E8F0;background:#fff;border-radius:12px;padding:15px;text-align:left;cursor:pointer;color:#17213A}
-.parent-action:hover{border-color:#6C3BFF;box-shadow:0 6px 18px rgba(50,30,100,.08)}
-.parent-action b{display:block;font-size:12px;margin-top:8px}.parent-action span{font-size:22px}
-.parent-content{background:#fff;border:1px solid #E4E8F0;border-radius:15px;padding:20px}
-.parent-content h2{font-size:17px;margin:0 0 5px}.parent-content p{font-size:11px;color:#8A94A7;margin:0 0 16px}
-.parent-table{width:100%;border-collapse:collapse}.parent-table th,.parent-table td{text-align:left;padding:12px;border-bottom:1px solid #ECEFF4;font-size:12px}
-.parent-status{color:#16864D;background:#E7F8EE;padding:5px 9px;border-radius:20px;font-size:10px;font-weight:bold}
-.parent-notice{padding:13px;border:1px solid #ECEAF5;background:#FAF9FF;border-radius:10px;margin-bottom:10px}.parent-notice strong{display:block;font-size:12px}.parent-notice small{color:#7C879A}
-#parentFeatureModal{display:none;position:fixed;inset:0;z-index:10005;background:rgba(5,10,25,.82);padding:20px;overflow:auto}
-.parent-feature-box{max-width:820px;margin:30px auto;background:#fff;border-radius:18px;overflow:hidden;color:#17213A}
-.parent-feature-head{background:linear-gradient(110deg,#111E3D,#332078);color:#fff;padding:22px;display:flex;justify-content:space-between;align-items:center}
-.parent-feature-body{padding:25px}
-.parent-feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
-.parent-feature-grid div{background:#F7F8FB;border:1px solid #E6EAF1;border-radius:12px;padding:15px}
-.parent-feature-grid small{display:block;color:#7C879A;font-size:10px;margin-bottom:6px}.parent-feature-grid strong{font-size:18px;color:#4E31B5}
-@media(max-width:950px){.parent-summary{grid-template-columns:repeat(2,1fr)}.parent-actions{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){#parentPortal{padding:18px}.parent-page-head{flex-direction:column;align-items:flex-start}.parent-summary,.parent-actions,.parent-feature-grid{grid-template-columns:1fr}.parent-child-card{align-items:flex-start;flex-direction:column}}
-
-</style>
-<style>
-.admin-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:20px}.admin-kpis>div{background:#fff;border:1px solid #E4E8F0;border-radius:14px;padding:18px}.admin-kpis small{display:block;color:#7A8498;font-size:10px;margin-bottom:7px}.admin-kpis strong{display:block;font-size:23px;color:#4E31B5}.admin-kpis span{display:block;color:#7B879A;font-size:9px;margin-top:5px}.admin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-bottom:20px}.admin-card{background:#fff;border:1px solid #E4E8F0;border-radius:14px;padding:17px;text-align:left;cursor:pointer;color:#17213A}.admin-card:hover{border-color:#6C3BFF;box-shadow:0 7px 20px rgba(50,30,100,.08)}.admin-card span{font-size:23px}.admin-card b{display:block;font-size:12px;margin-top:9px}.admin-card small{display:block;color:#8490A2;font-size:9px;margin-top:5px}.admin-panel{background:#fff;border:1px solid #E4E8F0;border-radius:15px;padding:20px}.admin-panel h2{font-size:17px;margin:0 0 5px}.admin-panel>p{font-size:11px;color:#8A94A7;margin:0 0 15px}.admin-table{width:100%;border-collapse:collapse}.admin-table th,.admin-table td{text-align:left;padding:12px;border-bottom:1px solid #ECEFF4;font-size:12px}.admin-good{color:#16864D;background:#E7F8EE;padding:5px 9px;border-radius:20px;font-size:10px;font-weight:bold}@media(max-width:900px){.admin-kpis{grid-template-columns:repeat(2,1fr)}.admin-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.admin-kpis,.admin-grid{grid-template-columns:1fr}}
 </style>
 </head>
 
 <body>
 
-<!-- =====================================
-     WELCOME SCREEN
-====================================== -->
+<!-- ================= HEADER ================= -->
 
-<div id="welcomeScreen">
+<header>
+<div class="navbar">
 
-<div class="container">
+    <div class="logo">
+        STUDENT <span>STUDY HUB</span>
+    </div>
 
-    <!-- BRAND -->
-
-    <section class="brand-section">
-
-        <img
-            src="logo.jpeg"
-            alt="INFINITY ONE"
-            class="logo"
-        >
-
-        <div class="brand-name">
-            INFINITY <span>ONE</span>
-        </div>
-
-        <div class="tagline">
-            Complete Digital Solution for Your School
-        </div>
-
-        <div class="sub-tagline">
-            One Platform. Infinite Possibilities.
-            <br>
-            Smart technology connecting schools,
-            teachers, students and parents.
-        </div>
-
-        <div class="badges">
-            <div class="badge">Powerful</div>
-            <div class="badge">Secure</div>
-            <div class="badge">Reliable</div>
-            <div class="badge">Smart</div>
-            <div class="badge">Scalable</div>
-        </div>
-
-    </section>
-
-
-    <!-- LOGIN / ROLE SELECTION -->
-
-    <section class="login-card">
-
-        <div class="login-title">
-            Welcome to INFINITY ONE
-        </div>
-
-        <div class="login-subtitle">
-            Select your role to continue
-        </div>
-
-        <div class="roles">
-
-            <button class="role-btn admin" onclick="openAdmin()">
-                <span class="role-icon">👨‍💼</span>
-                Admin
-            </button>
-
-            <button class="role-btn teacher" onclick="openAdmin(); setTimeout(openTeacherManagement, 50)">
-                <span class="role-icon">👩‍🏫</span>
-                Teacher
-            </button>
-
-            <button class="role-btn student" onclick="openAdmin(); setTimeout(openStudentManagement, 50)">
-                <span class="role-icon">🎓</span>
-                Student
-            </button>
-
-            <button class="role-btn parent" onclick="openAdmin(); setTimeout(openParentPortal, 50)">
-                <span class="role-icon">👨‍👩‍👧</span>
-                Parent
-            </button>
-
-        </div>
-
-        <div class="footer-text">
-            <strong>INFINITY ONE</strong>
-            &nbsp; • &nbsp;
-            Smart School Management Platform
-        </div>
-
-    </section>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#subjects">Subjects</a>
+        <a href="#papers">Papers</a>
+        <a href="#formulas">Formulas</a>
+        <a href="#revision">90 Days</a>
+        <a href="#tests">Tests</a>
+        <a href="#career">Career</a>
+    </nav>
 
 </div>
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+    <div class="badge">
+        CLASS 10 • BOARD EXAM PREPARATION
+    </div>
+
+    <h1>
+        STUDENT <span>STUDY HUB</span>
+    </h1>
+
+    <p>
+        Learn the concept. Understand the question.
+        Practice different patterns. Build confidence
+        for your examination.
+    </p>
+
+    <div class="hero-buttons">
+
+        <a href="#subjects" class="btn btn-primary">
+            START LEARNING
+        </a>
+
+        <a href="#tests" class="btn btn-outline">
+            TAKE A TEST
+        </a>
+
+    </div>
 
 </div>
+</section>
 
 
-<!-- =====================================
-     ADMIN DASHBOARD
-====================================== -->
+<!-- ================= SUBJECTS ================= -->
 
-<div id="dashboard">
-
-    <!-- SIDEBAR -->
-
-    <aside class="sidebar">
-
-        <div class="side-brand">
-
-            <img
-                src="logo.jpeg"
-                class="side-logo"
-                alt="INFINITY ONE"
-            >
-
-            <div>
-                <strong>INFINITY ONE</strong>
-                <span>School Management</span>
-            </div>
-
-        </div>
-
-
-        <div class="menu-title">
-            MAIN
-        </div>
-
-        <button class="menu-item active" onclick="showDashboard()">
-            <span>📊</span>
-            <strong>Dashboard</strong>
-        </button>
-
-        <button class="menu-item" onclick="openStudentManagement()">
-            <span>👨‍🎓</span>
-            <strong>Students</strong>
-        </button>
-
-        <button class="menu-item" onclick="openTeacherManagement()">
-            <span>👩‍🏫</span>
-            <strong>Teachers</strong>
-        </button>
-
-        <button class="menu-item" onclick="openParentPortal()">
-            <span>👨‍👩‍👧</span>
-            <strong>Parents</strong>
-        </button>
-
-        <button class="menu-item">
-            <span>📅</span>
-            <strong>Attendance</strong>
-        </button>
-
-
-        <div class="menu-title">
-            ACADEMICS
-        </div>
-
-        <button class="menu-item">
-            <span>📚</span>
-            <strong>Academics</strong>
-        </button>
-
-        <button class="menu-item">
-            <span>📝</span>
-            <strong>Examinations</strong>
-        </button>
-
-        <button class="menu-item">
-            <span>📖</span>
-            <strong>Homework</strong>
-        </button>
-
-        <button class="menu-item">
-            <span>🕐</span>
-            <strong>Timetable</strong>
-        </button>
-
-
-        <div class="menu-title">
-            MANAGEMENT
-        </div>
-
-        <button class="menu-item">
-            <span>💰</span>
-            <strong>Finance</strong>
-        </button>
-
-        <button class="menu-item">
-            <span>📊</span>
-            <strong>Reports</strong>
-        </button>
-
-        <button class="menu-item">
-            <span>🔔</span>
-            <strong>Notifications</strong>
-        </button>
-
-
-        <div class="menu-title">
-            INFINITY AI
-        </div>
-
-        <button class="menu-item">
-            <span>🤖</span>
-            <strong>Infinity AI</strong>
-        </button>
-
-    </aside>
-
-
-    <!-- MAIN -->
-
-    <main class="main">
-
-        <header class="topbar">
-
-            <div class="top-title">
-                <h2>Admin Dashboard</h2>
-                <p>School Overview & Management</p>
-            </div>
-
-            <div class="top-actions">
-
-                <button class="notification">
-                    🔔
-                </button>
-
-                <div class="admin-profile">
-
-                    <div class="avatar">
-                        A
-                    </div>
-
-                    <div>
-                        <strong style="font-size:13px;">
-                            School Admin
-                        </strong>
-
-                        <div style="font-size:10px;color:#7A8498;">
-                            Administrator
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </header>
-
-
-        <div class="content">
-
-            <!-- Welcome -->
-
-            <section class="dashboard-welcome">
-
-                <h1>
-                    Welcome to INFINITY ONE 👋
-                </h1>
-
-                <p>
-                    One Platform. Infinite Possibilities.
-                    Manage your entire school from one intelligent dashboard.
-                </p>
-
-            </section>
-
-
-            <!-- STATISTICS -->
-
-            <section class="stats">
-
-                <div class="stat-card">
-
-                    <div class="stat-icon">
-                        👨‍🎓
-                    </div>
-
-                    <span class="stat-change">
-                        +5.2%
-                    </span>
-
-                    <h3>1,248</h3>
-
-                    <p>Total Students</p>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <div class="stat-icon">
-                        👩‍🏫
-                    </div>
-
-                    <span class="stat-change">
-                        +2.1%
-                    </span>
-
-                    <h3>86</h3>
-
-                    <p>Total Teachers</p>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <div class="stat-icon">
-                        📅
-                    </div>
-
-                    <span class="stat-change">
-                        Today
-                    </span>
-
-                    <h3>94.6%</h3>
-
-                    <p>Today's Attendance</p>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <div class="stat-icon">
-                        💰
-                    </div>
-
-                    <span class="stat-change">
-                        +8.4%
-                    </span>
-
-                    <h3>₹18.4L</h3>
-
-                    <p>Fee Collection</p>
-
-                </div>
-
-            </section>
-
-
-            <!-- DASHBOARD GRID -->
-
-            <section class="dashboard-grid">
-
-
-                <!-- ACTIVITY -->
-
-                <div class="panel">
-
-                    <div class="panel-header">
-
-                        <h3>
-                            Recent School Activity
-                        </h3>
-
-                        <button>
-                            View All
-                        </button>
-
-                    </div>
-
-
-                    <div class="activity">
-
-                        <div class="activity-icon">
-                            🎓
-                        </div>
-
-                        <div class="activity-text">
-
-                            <strong>
-                                New student admission
-                            </strong>
-
-                            <small>
-                                Student admission completed
-                            </small>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="activity">
-
-                        <div class="activity-icon">
-                            📝
-                        </div>
-
-                        <div class="activity-text">
-
-                            <strong>
-                                Examination marks updated
-                            </strong>
-
-                            <small>
-                                Grade 10 examination records
-                            </small>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="activity">
-
-                        <div class="activity-icon">
-                            📢
-                        </div>
-
-                        <div class="activity-text">
-
-                            <strong>
-                                New announcement published
-                            </strong>
-
-                            <small>
-                                Notice sent to parents and students
-                            </small>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="activity">
-
-                        <div class="activity-icon">
-                            💰
-                        </div>
-
-                        <div class="activity-text">
-
-                            <strong>
-                                Fee payment received
-                            </strong>
-
-                            <small>
-                                Online payment successfully recorded
-                            </small>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- PERFORMANCE -->
-
-                <div class="panel">
-
-                    <div class="panel-header">
-
-                        <h3>
-                            School Performance
-                        </h3>
-
-                        <button>
-                            Analytics
-                        </button>
-
-                    </div>
-
-
-                    <div class="performance">
-
-                        <div class="performance-label">
-
-                            <span>Academic Performance</span>
-                            <strong>86%</strong>
-
-                        </div>
-
-                        <div class="progress">
-                            <div style="width:86%;"></div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="performance">
-
-                        <div class="performance-label">
-
-                            <span>Attendance</span>
-                            <strong>94%</strong>
-
-                        </div>
-
-                        <div class="progress">
-                            <div style="width:94%;"></div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="performance">
-
-                        <div class="performance-label">
-
-                            <span>Parent Engagement</span>
-                            <strong>78%</strong>
-
-                        </div>
-
-                        <div class="progress">
-                            <div style="width:78%;"></div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="performance">
-
-                        <div class="performance-label">
-
-                            <span>Teacher Productivity</span>
-                            <strong>91%</strong>
-
-                        </div>
-
-                        <div class="progress">
-                            <div style="width:91%;"></div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="ai-box">
-
-                        <strong>
-                            🤖 Infinity AI Insight
-                        </strong>
-
-                        <p>
-                            Overall school performance is improving.
-                            AI has identified opportunities to improve
-                            attendance and parent engagement.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- QUICK MODULES -->
-
-            <section class="quick-modules">
-
-                <div class="student-cards"><div class="student-card"><div class="student-card-icon">👨‍🎓</div><div><strong>1,248</strong><small>Total Students</small></div></div><div class="student-card"><div class="student-card-icon">🟢</div><div><strong>1,182</strong><small>Active Students</small></div></div><div class="student-card"><div class="student-card-icon">📚</div><div><strong>42</strong><small>Classes</small></div></div><div class="student-card"><div class="student-card-icon">📊</div><div><strong>94.6%</strong><small>Attendance</small></div></div></div><div class="student-list"><div class="student-list-head"><div><h2>Students</h2><p>Recently registered students</p></div><input class="student-search" placeholder="Search student..."></div><div class="student-table-wrap"><table class="student-table"><thead><tr><th>Student</th><th>Admission No.</th><th>Class</th><th>Section</th><th>Parent</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td><div class="student-person"><div class="student-avatar">RK</div><div><strong>Rahul Kumar</strong><small>Male • 15 Jun 2015</small></div></div></td><td>IO-2026-001</td><td>6th</td><td>A</td><td>Suresh Kumar</td><td><span class="student-active">Active</span></td>
-<td><button class="student-action" onclick="viewStudent('Rahul Kumar','IO-2026-001','6th','A','Suresh Kumar')">View</button>
-<button class="student-action" onclick="editStudent('Rahul Kumar','IO-2026-001')">Edit</button>
-<button class="student-action" onclick="openStudentFeature('Attendance','Rahul Kumar')">Attendance</button>
-<button class="student-action" onclick="openStudentFeature('Marks','Rahul Kumar')">Marks</button>
-<button class="student-action" onclick="openStudentFeature('Digital Passport','Rahul Kumar')">Passport</button></td></tr><tr><td><div class="student-person"><div class="student-avatar">AS</div><div><strong>Ananya Sharma</strong><small>Female • 21 Aug 2014</small></div></div></td><td>IO-2026-002</td><td>7th</td><td>B</td><td>Ravi Sharma</td><td><span class="student-active">Active</span></td>
-<td><button class="student-action" onclick="viewStudent('Ananya Sharma','IO-2026-002','7th','B','Ravi Sharma')">View</button>
-<button class="student-action" onclick="editStudent('Ananya Sharma','IO-2026-002')">Edit</button>
-<button class="student-action" onclick="openStudentFeature('Attendance','Ananya Sharma')">Attendance</button>
-<button class="student-action" onclick="openStudentFeature('Marks','Ananya Sharma')">Marks</button>
-<button class="student-action" onclick="openStudentFeature('Digital Passport','Ananya Sharma')">Passport</button></td></tr></tbody></table></div></div></section>
-<div id="studentModal"><div class="student-modal-box"><div class="student-modal-head"><div><small>INFINITY ONE</small><h2>Add Student</h2><p>Student Registration &amp; Profile</p></div><button class="student-close" onclick="closeStudentForm()">×</button></div><div class="student-photo"><div id="studentPhotoPreview" class="student-photo-preview">👤</div><div><h3>Student Photo</h3><p>Upload student's profile photo</p><label class="student-upload">📷 Upload Photo<input type="file" accept="image/*" onchange="previewStudentPhoto(event)"></label><small>JPG / PNG • Maximum 2MB</small></div></div><div class="student-section"><h3>01 — Basic Details</h3><div class="student-form-grid"><div class="student-field"><label>Student Name *</label><input id="studentName" value="Rahul Kumar"></div><div class="student-field"><label>Admission Number *</label><input id="admissionNumber" value="IO-2026-001"></div><div class="student-field"><label>Date of Birth</label><input type="date" value="2015-06-15"></div><div class="student-field"><label>Gender</label><select><option>Male</option><option>Female</option><option>Other</option></select></div></div></div><div class="student-section"><h3>02 — Academic Details</h3><div class="student-form-grid"><div class="student-field"><label>Class</label><select><option>6th Class</option><option>7th Class</option><option>8th Class</option><option>9th Class</option><option>10th Class</option></select></div><div class="student-field"><label>Section</label><select><option>A</option><option>B</option><option>C</option><option>D</option></select></div><div class="student-field"><label>Academic Year</label><select><option>2026 - 2027</option></select></div><div class="student-field"><label>Roll Number</label><input value="24"></div></div></div><div class="student-section"><h3>03 — Parent / Guardian Details</h3><div class="student-form-grid"><div class="student-field"><label>Parent Name</label><input value="Suresh Kumar"></div><div class="student-field"><label>Mobile Number</label><input value="9876543210"></div><div class="student-field"><label>Email</label><input value="parent@example.com"></div></div><div class="student-field student-full"><label>Address</label><textarea rows="3">Bhimavaram, Andhra Pradesh</textarea></div></div><div class="student-actions"><button class="io-btn io-back" onclick="closeStudentForm()">Cancel</button><button class="io-btn io-primary" onclick="saveStudent()">✓ Save Student</button></div></div></div>
-
-<script>
-
-/* ADMIN */
-
-function openAdmin(){
-
-    document.getElementById("welcomeScreen").style.display="none";
-
-    document.getElementById("dashboard").style.display="block";
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
-}
-
-
-/* OTHER ROLES */
-
-function comingSoon(role){
-
-    alert(
-        role +
-        " Portal will be developed in the next step."
-    );
-
-}
-
-function showDashboard(){
- document.getElementById("studentManagement").style.display="none";
- document.getElementById("teacherManagement").style.display="none";
- document.getElementById("parentPortal").style.display="none";
- document.getElementById("dashboard").style.display="block";
- document.body.style.overflow="auto";
- window.scrollTo({top:0,behavior:"smooth"});
-}
-
-function openStudentManagement(){document.getElementById("dashboard").style.display="none";document.getElementById("teacherManagement").style.display="none";document.getElementById("parentPortal").style.display="none";document.getElementById("studentManagement").style.display="block";window.scrollTo({top:0,behavior:"smooth"});}
-function backToDashboard(){document.getElementById("studentManagement").style.display="none";document.getElementById("dashboard").style.display="block";window.scrollTo({top:0,behavior:"smooth"});}
-function openStudentForm(){document.getElementById("studentModal").style.display="block";document.body.style.overflow="hidden";}
-function closeStudentForm(){document.getElementById("studentModal").style.display="none";document.body.style.overflow="auto";}
-function previewStudentPhoto(e){const f=e.target.files[0];if(!f)return;if(f.size>2097152){alert("Please upload an image below 2MB.");e.target.value="";return;}const r=new FileReader();r.onload=x=>document.getElementById("studentPhotoPreview").innerHTML='<img src="'+x.target.result+'" alt="Student Photo">';r.readAsDataURL(f);}
-function saveStudent(){const n=document.getElementById("studentName").value.trim(),a=document.getElementById("admissionNumber").value.trim();if(!n){alert("Please enter Student Name.");return;}if(!a){alert("Please enter Admission Number.");return;}alert("✓ Student Saved Successfully!\n\nStudent: "+n+"\nAdmission No: "+a);closeStudentForm();}
-
-
-function viewStudent(name,admission,cls,section,parent){
-document.getElementById("profileName").textContent=name;
-document.getElementById("profileAdmission").textContent=admission;
-document.getElementById("profileClass").textContent=cls;
-document.getElementById("profileSection").textContent=section;
-document.getElementById("profileParent").textContent=parent;
-document.getElementById("studentProfileModal").style.display="block";
-document.body.style.overflow="hidden";
-}
-function closeStudentProfile(){
-document.getElementById("studentProfileModal").style.display="none";
-document.body.style.overflow="auto";
-}
-function editStudent(name,admission){
-document.getElementById("studentModal").style.display="block";
-document.body.style.overflow="hidden";
-document.getElementById("studentName").value=name;
-document.getElementById("admissionNumber").value=admission;
-document.querySelector("#studentModal .student-modal-head h2").textContent="Edit Student";
-}
-function openStudentFeature(feature,name){
-document.getElementById("featureTitle").textContent=name+" — "+feature;
-document.getElementById("featureModal").style.display="block";
-document.body.style.overflow="hidden";
-document.getElementById("featureContent").innerHTML=getFeatureContent(feature,name);
-}
-function closeFeature(){
-document.getElementById("featureModal").style.display="none";
-document.body.style.overflow="auto";
-}
-function getFeatureContent(feature,name){
-if(feature==="Attendance"){
-return '<div class="feature-summary"><div><small>Monthly Attendance</small><strong>94.6%</strong></div><div><small>Present</small><strong>52 Days</strong></div><div><small>Absent</small><strong>3 Days</strong></div></div><h3>Attendance Record</h3><table class="feature-table"><tr><th>Date</th><th>Status</th><th>Period</th></tr><tr><td>06 Aug 2026</td><td><span class="present">Present</span></td><td>Full Day</td></tr><tr><td>05 Aug 2026</td><td><span class="present">Present</span></td><td>Full Day</td></tr><tr><td>04 Aug 2026</td><td><span class="absent">Absent</span></td><td>Full Day</td></tr></table>';
-}
-if(feature==="Marks"){
-return '<div class="feature-summary"><div><small>Overall</small><strong>86%</strong></div><div><small>Grade</small><strong>A</strong></div><div><small>Rank</small><strong>8</strong></div></div><h3>Subject Marks</h3><table class="feature-table"><tr><th>Subject</th><th>Marks</th><th>Grade</th></tr><tr><td>Mathematics</td><td>91 / 100</td><td>A+</td></tr><tr><td>Science</td><td>87 / 100</td><td>A</td></tr><tr><td>English</td><td>82 / 100</td><td>A</td></tr><tr><td>Social Studies</td><td>84 / 100</td><td>A</td></tr></table>';
-}
-return '<div class="passport-card"><div class="passport-icon">🪪</div><h2>Infinity Student Digital Passport</h2><p>'+name+'</p><div class="passport-grid"><div><small>Academic History</small><strong>Available</strong></div><div><small>Certificates</small><strong>12</strong></div><div><small>Achievements</small><strong>8</strong></div><div><small>Sports</small><strong>3</strong></div><div><small>Skills</small><strong>6</strong></div><div><small>Portfolio</small><strong>Active</strong></div></div></div>';
-}
-
-
-function openTeacherManagement(){document.getElementById("dashboard").style.display="none";document.getElementById("studentManagement").style.display="none";document.getElementById("parentPortal").style.display="none";document.getElementById("teacherManagement").style.display="block";window.scrollTo({top:0,behavior:"smooth"});}
-function backToDashboardFromTeachers(){document.getElementById("teacherManagement").style.display="none";document.getElementById("parentPortal").style.display="none";document.getElementById("studentManagement").style.display="none";document.getElementById("dashboard").style.display="block";window.scrollTo({top:0,behavior:"smooth"});}
-function openTeacherForm(){document.getElementById("teacherModal").style.display="block";document.body.style.overflow="hidden";document.getElementById("teacherModalTitle").textContent="Add Teacher";}
-function closeTeacherForm(){document.getElementById("teacherModal").style.display="none";document.body.style.overflow="auto";}
-function editTeacher(name,id){openTeacherForm();document.getElementById("teacherModalTitle").textContent="Edit Teacher";document.getElementById("teacherName").value=name;document.getElementById("teacherId").value=id;}
-function saveTeacher(){let n=document.getElementById("teacherName").value.trim(),i=document.getElementById("teacherId").value.trim();if(!n){alert("Please enter Teacher Name.");return}if(!i){alert("Please enter Employee ID.");return}alert("✓ Teacher Saved Successfully!\n\nTeacher: "+n+"\nEmployee ID: "+i);closeTeacherForm();}
-function viewTeacher(n,i,s,c,e){document.getElementById("teacherProfileName").textContent=n;document.getElementById("teacherProfileId").textContent=i;document.getElementById("teacherProfileSubject").textContent=s;document.getElementById("teacherProfileClasses").textContent=c;document.getElementById("teacherProfileExperience").textContent=e;document.getElementById("teacherProfileModal").style.display="block";document.body.style.overflow="hidden";}
-function closeTeacherProfile(){document.getElementById("teacherProfileModal").style.display="none";document.body.style.overflow="auto";}
-function openTeacherFeature(f,n){document.getElementById("teacherFeatureTitle").textContent=n+" — "+f;document.getElementById("teacherFeatureModal").style.display="block";document.body.style.overflow="hidden";if(f==="Attendance"){document.getElementById("teacherFeatureContent").innerHTML='<div class="teacher-feature-grid"><div><small>Monthly Attendance</small><strong>96.2%</strong></div><div><small>Present Days</small><strong>25</strong></div><div><small>Leave Days</small><strong>1</strong></div></div><h3>Recent Attendance</h3><table class="teacher-feature-table"><tr><th>Date</th><th>Status</th><th>Period</th></tr><tr><td>09 Aug 2026</td><td><span class="teacher-good">Present</span></td><td>Full Day</td></tr><tr><td>08 Aug 2026</td><td><span class="teacher-good">Present</span></td><td>Full Day</td></tr><tr><td>07 Aug 2026</td><td><span class="teacher-good">Present</span></td><td>Full Day</td></tr></table>'}else{document.getElementById("teacherFeatureContent").innerHTML='<div class="teacher-feature-grid"><div><small>Overall Performance</small><strong>91%</strong></div><div><small>Lesson Plans</small><strong>98%</strong></div><div><small>Class Results</small><strong>88%</strong></div></div><h3>Performance Insights</h3><table class="teacher-feature-table"><tr><th>Area</th><th>Score</th><th>Status</th></tr><tr><td>Lesson Planning</td><td>98%</td><td><span class="teacher-good">Excellent</span></td></tr><tr><td>Student Results</td><td>88%</td><td><span class="teacher-good">Good</span></td></tr><tr><td>Homework Completion</td><td>94%</td><td><span class="teacher-good">Excellent</span></td></tr></table>';}}
-function closeTeacherFeature(){document.getElementById("teacherFeatureModal").style.display="none";document.body.style.overflow="auto";}
-
-
-function openParentPortal(){
-document.getElementById("dashboard").style.display="none";
-document.getElementById("teacherManagement").style.display="none";
-document.getElementById("studentManagement").style.display="none";
-document.getElementById("parentPortal").style.display="block";
-window.scrollTo({top:0,behavior:"smooth"});
-}
-function backToDashboardFromParents(){
-document.getElementById("parentPortal").style.display="none";
-document.getElementById("dashboard").style.display="block";
-window.scrollTo({top:0,behavior:"smooth"});
-}
-function openParentFeature(feature){
-  var m=document.getElementById("parentFeatureModal");
-  var t=document.getElementById("parentFeatureTitle");
-  var c=document.getElementById("parentFeatureContent");
-  if(!m||!t||!c)return;
-  t.textContent="Rahul Kumar — "+feature;
-  m.style.display="block";
-  document.body.style.overflow="hidden";
-
-  if(feature==="Profile"){
-    c.innerHTML='<h3>🎓 Child Profile</h3><div class="parent-feature-grid"><div><small>Student Name</small><strong>Rahul Kumar</strong></div><div><small>Admission No.</small><strong>IO-2026-001</strong></div><div><small>Class / Section</small><strong>6th - A</strong></div></div><table class="parent-feature-table"><tr><th>Information</th><th>Details</th></tr><tr><td>Date of Birth</td><td>14 June 2014</td></tr><tr><td>Gender</td><td>Male</td></tr><tr><td>Parent / Guardian</td><td>Suresh Kumar</td></tr><tr><td>Mobile</td><td>9876543210</td></tr><tr><td>School Status</td><td><span class="parent-good">Active</span></td></tr></table>';
-  }else if(feature==="Marks"){
-    c.innerHTML='<h3>📊 Academic Progress</h3><div class="parent-feature-grid"><div><small>Overall Score</small><strong>86%</strong></div><div><small>Grade</small><strong>A</strong></div><div><small>Class Rank</small><strong>8</strong></div></div><table class="parent-feature-table"><tr><th>Subject</th><th>Marks</th><th>Grade</th></tr><tr><td>Mathematics</td><td>91 / 100</td><td>A+</td></tr><tr><td>Science</td><td>87 / 100</td><td>A</td></tr><tr><td>English</td><td>82 / 100</td><td>A</td></tr><tr><td>Social Studies</td><td>84 / 100</td><td>A</td></tr><tr><td>Telugu</td><td>86 / 100</td><td>A</td></tr></table>';
-  }else if(feature==="Attendance"){
-    c.innerHTML='<h3>📅 Attendance Calendar</h3><div class="parent-feature-grid"><div><small>Attendance</small><strong>94.6%</strong></div><div><small>Present Days</small><strong>52</strong></div><div><small>Absent Days</small><strong>3</strong></div></div><table class="parent-feature-table"><tr><th>Date</th><th>Status</th><th>Day</th></tr><tr><td>09 Aug 2026</td><td><span class="parent-good">Present</span></td><td>Sunday</td></tr><tr><td>08 Aug 2026</td><td><span class="parent-good">Present</span></td><td>Saturday</td></tr><tr><td>07 Aug 2026</td><td><span class="parent-good">Present</span></td><td>Friday</td></tr><tr><td>06 Aug 2026</td><td>Absent</td><td>Thursday</td></tr></table>';
-  }else if(feature==="Homework"){
-    c.innerHTML='<h3>📝 Homework & Assignments</h3><div class="parent-feature-grid"><div><small>Completion</small><strong>92%</strong></div><div><small>Submitted</small><strong>23</strong></div><div><small>Pending</small><strong>2</strong></div></div><table class="parent-feature-table"><tr><th>Subject</th><th>Assignment</th><th>Status</th></tr><tr><td>Mathematics</td><td>Algebra Practice</td><td><span class="parent-good">Submitted</span></td></tr><tr><td>Science</td><td>Lab Record</td><td><span class="parent-good">Submitted</span></td></tr><tr><td>English</td><td>Essay Writing</td><td>Pending</td></tr><tr><td>Social Studies</td><td>Map Work</td><td>Pending</td></tr></table>';
-  }else if(feature==="Notices"){
-    c.innerHTML='<h3>📢 School Notices</h3><div class="parent-notice"><strong>Parent-Teacher Meeting</strong><small>17 August 2026 • Meeting with class teacher.</small></div><div class="parent-notice"><strong>Unit Test Results</strong><small>Mathematics result has been published.</small></div><div class="parent-notice"><strong>Independence Day Activity</strong><small>Students should report according to the school circular.</small></div>';
-  }else if(feature==="Communication"){
-    c.innerHTML='<h3>💬 Teacher Messages</h3><div class="parent-notice"><strong>Mrs. S. Rani — Class Teacher</strong><small>Rahul is performing well. Please encourage regular revision at home.</small></div><div style="margin-top:15px"><textarea id="parentMessageBox" rows="4" style="width:100%;padding:12px;border:1px solid #DCE1E9;border-radius:9px" placeholder="Type your message to the teacher..."></textarea><button class="io-btn io-primary" style="margin-top:10px" onclick="sendParentMessage()">Send Message</button></div>';
-  }else if(feature==="Fees"){
-    c.innerHTML='<h3>💳 Fees & Payments</h3><div class="parent-feature-grid"><div><small>Annual Fee</small><strong>₹45,000</strong></div><div><small>Paid</small><strong>₹45,000</strong></div><div><small>Balance</small><strong>₹0</strong></div></div><div class="parent-notice"><strong>✓ Fees Fully Paid</strong><small>No outstanding amount for the current academic year.</small></div><table class="parent-feature-table"><tr><th>Payment</th><th>Date</th><th>Amount</th><th>Status</th></tr><tr><td>Annual Fee</td><td>05 Jun 2026</td><td>₹45,000</td><td><span class="parent-good">Paid</span></td></tr></table>';
-  }else if(feature==="Passport"){
-    c.innerHTML='<div style="text-align:center"><div style="font-size:55px">🪪</div><h2>Infinity Student Digital Passport</h2><p>Rahul Kumar • IO-2026-001</p></div><div class="parent-feature-grid"><div><small>Certificates</small><strong>12</strong></div><div><small>Achievements</small><strong>8</strong></div><div><small>Skills</small><strong>6</strong></div></div><table class="parent-feature-table"><tr><th>Record</th><th>Status</th></tr><tr><td>Academic Certificate</td><td><span class="parent-good">Verified</span></td></tr><tr><td>Sports Achievement</td><td><span class="parent-good">Verified</span></td></tr><tr><td>School Activities</td><td><span class="parent-good">Verified</span></td></tr></table>';
-  }else if(feature==="Notifications"){
-    c.innerHTML='<h3>🔔 Notifications</h3><div class="parent-notice"><strong>New Marks Available</strong><small>Mathematics unit test marks are available.</small></div><div class="parent-notice"><strong>Homework Reminder</strong><small>2 assignments are pending.</small></div><div class="parent-notice"><strong>PTM Reminder</strong><small>Parent-Teacher Meeting on 17 August 2026.</small></div>';
-  }
-}
-function sendParentMessage(){
-  var box=document.getElementById("parentMessageBox");
-  if(!box || !box.value.trim()){alert("Please type a message.");return;}
-  alert("✓ Message sent to the class teacher.");
-  box.value="";
-}
-
-
-</script>
-
-
-<div id="studentProfileModal" class="student-profile-modal">
-<div class="student-profile-box">
-<div class="student-profile-head"><div><small>INFINITY ONE • STUDENT PROFILE</small><h2 id="profileName">Student Profile</h2></div><button class="student-close" onclick="closeStudentProfile()">×</button></div>
-<div class="student-profile-body"><div class="profile-grid">
-<div class="profile-item"><small>Admission Number</small><strong id="profileAdmission"></strong></div>
-<div class="profile-item"><small>Class</small><strong id="profileClass"></strong></div>
-<div class="profile-item"><small>Section</small><strong id="profileSection"></strong></div>
-<div class="profile-item"><small>Parent / Guardian</small><strong id="profileParent"></strong></div>
-<div class="profile-item"><small>Attendance</small><strong>94.6%</strong></div>
-<div class="profile-item"><small>Academic Performance</small><strong>86%</strong></div>
-<div class="profile-item"><small>Discipline</small><strong>Excellent</strong></div>
-<div class="profile-item"><small>Digital Passport</small><strong>Active</strong></div>
-</div></div></div></div>
-
-
-<div id="featureModal" class="feature-modal">
-<div class="feature-box">
-<div class="feature-head"><h2 id="featureTitle">Student Feature</h2><button class="student-close" onclick="closeFeature()">×</button></div>
-<div id="featureContent" class="feature-body"></div>
-</div>
-</div>
-
-<div id="adminFeatureModal" style="display:none;position:fixed;inset:0;z-index:10060;background:rgba(5,10,25,.82);padding:20px;overflow:auto"><div style="max-width:850px;margin:30px auto;background:#fff;border-radius:18px;overflow:hidden"><div style="background:linear-gradient(110deg,#111E3D,#332078);color:#fff;padding:22px;display:flex;justify-content:space-between;align-items:center"><h2 id="adminFeatureTitle">Admin Feature</h2><button class="student-close" onclick="closeAdminFeature()">×</button></div><div id="adminFeatureContent" style="padding:25px"></div></div></div>
-
-<script>
-function openAdminManagement(){['dashboard','studentManagement','teacherManagement','parentPortal'].forEach(function(id){var e=document.getElementById(id);if(e)e.style.display='none';});var a=document.getElementById('adminManagement');if(a)a.style.display='block';window.scrollTo(0,0);}
-function backToDashboardFromAdmin(){var a=document.getElementById('adminManagement');if(a)a.style.display='none';var d=document.getElementById('dashboard');if(d)d.style.display='block';window.scrollTo(0,0);}
-function openAdminFeature(feature){var m=document.getElementById('adminFeatureModal'),t=document.getElementById('adminFeatureTitle'),c=document.getElementById('adminFeatureContent');if(!m||!t||!c)return;t.textContent='Admin — '+feature;m.style.display='block';document.body.style.overflow='hidden';var data={Students:'<h3>🎓 Student Management</h3><p>Total Students: <b>1,248</b></p><p>Active: 1,231 • New Admissions: 17 • Pending Profiles: 6</p>',Teachers:'<h3>👩‍🏫 Teacher Management</h3><p>Total Teachers: <b>72</b></p><p>Active: 69 • On Leave: 3 • Departments: 8</p>',Parents:'<h3>👨‍👩‍👧 Parent Management</h3><p>Registered Parents: <b>1,198</b></p><p>Active Portal Users: 1,102 • Pending Verification: 12</p>',Attendance:'<h3>📅 Attendance Control</h3><p>Today: <b>94.6%</b></p><p>Present: 1,181 • Absent: 67 • Leave: 14</p>',Academics:'<h3>📚 Academic Management</h3><p>Classes: <b>10</b> • Sections: <b>24</b> • Subjects: <b>42</b></p>',Fees:'<h3>💳 Fees Management</h3><p>Collected: <b>₹42.8L</b> • Pending: ₹2.1L • Collection Progress: 95%</p>',Notices:'<h3>📢 Notices & Circulars</h3><p>Published today: <b>3</b></p>',Reports:'<h3>📊 Reports & Analytics</h3><p>Academic, attendance, fees and student performance reports are available.</p>',Settings:'<h3>⚙️ School Settings</h3><p>School profile, academic year, classes, subjects, users and system preferences.</p>'};c.innerHTML=data[feature]||'<p>Admin feature ready.</p>';}
-function closeAdminFeature(){var m=document.getElementById('adminFeatureModal');if(m)m.style.display='none';document.body.style.overflow='auto';}
-</script>
-
-
-<!-- ================= INFINITY ONE : ACADEMIC LESSONS SECTION ================= -->
-<!-- ================= SECTION 2 : ALL SUBJECTS & NOTES ================= -->
-
-<section id="all-subjects">
+<section id="subjects">
 
 <div class="section-title">
 
-    <h2>📚 All Subjects & Notes</h2>
+    <h2>📚 Subject Learning Hub</h2>
 
     <p>
-        Subject-wise and chapter-wise learning.
-        Select a subject and open the chapter you want to study.
+        Concept-based learning with diagrams, formulas,
+        solved problems and different question patterns.
     </p>
 
 </div>
 
 
-<!-- SUBJECT BUTTONS -->
-
-<div class="subject-menu">
-
-    <button class="subject-btn active"
-        onclick="showSubject('maths',this)">
-        📐 Mathematics
-    </button>
-
-    <button class="subject-btn"
-        onclick="showSubject('physics',this)">
-        ⚡ Physics
-    </button>
-
-    <button class="subject-btn"
-        onclick="showSubject('biology',this)">
-        🧬 Biology
-    </button>
-
-    <button class="subject-btn"
-        onclick="showSubject('social',this)">
-        🏛️ Social Studies
-    </button>
-
-    <button class="subject-btn"
-        onclick="showSubject('english',this)">
-        📖 English
-    </button>
-
-    <button class="subject-btn"
-        onclick="showSubject('telugu',this)">
-        📝 Telugu
-    </button>
-
-</div>
+<div class="cards">
 
 
-<!-- ================= MATHEMATICS ================= -->
+<!-- ================= MATHS ================= -->
 
-<div class="subject-panel active" id="maths">
+<div class="card subject-card">
 
-    <div class="subject-heading">
+    <div class="card-icon">📐</div>
 
-        <span>📐</span>
+    <h3>Mathematics</h3>
 
-        <div>
-            <h3>Mathematics</h3>
+    <p>
+        Trigonometry — Sine, Cosine & Tangent
+    </p>
 
-            <p>
-                Concept learning • Formulas • Problems • Practice
-            </p>
-        </div>
+    <div style="
+        display:flex;
+        align-items:center;
+        gap:10px;
+        margin-top:15px;
+        flex-wrap:wrap;
+    ">
+
+        <span class="subject-tag">
+            DEMO LESSON
+        </span>
+
+        <button
+            class="btn btn-primary open-lesson-btn"
+            onclick="openLesson(event,this)">
+            OPEN LESSON →
+        </button>
 
     </div>
 
 
-    <div class="chapter-grid">
+    <div class="lesson-area">
 
-        <!-- DEMO CHAPTER -->
+        <h4>📐 1. What is Trigonometry?</h4>
 
-        <div class="chapter-card demo-chapter">
+        <p>
+            Trigonometry is the study of the relationship
+            between the sides and angles of triangles.
+            In this lesson we focus on a right-angled triangle.
+        </p>
 
-            <div class="chapter-number">
-                DEMO
+
+        <h4>🔺 2. Understand the Right Triangle</h4>
+
+        <div class="diagram">
+
+            <div class="diagram-title">
+                RIGHT-ANGLED TRIANGLE
             </div>
 
-            <h3>Trigonometry</h3>
+            <div class="triangle">
+<pre>
+             /|
+            / |
+           /  |  Opposite
+          /   |
+         / θ  |
+        /_____|
+         Adjacent
 
-            <p>
-                Sine, Cosine, Tangent,
-                Right-angled triangle and problems.
-            </p>
-
-            <div class="chapter-tags">
-
-                <span>Concept</span>
-                <span>Formula</span>
-                <span>Problems</span>
-                <span>Diagram</span>
-
+        Hypotenuse
+</pre>
             </div>
 
-            <button
-                class="open-chapter"
-                onclick="openChapter('mathTrigonometry')">
-
-                OPEN LESSON →
-
-            </button>
-
-        </div>
-
-
-        <div class="chapter-card">
-
-            <div class="chapter-number">
-                CHAPTER
-            </div>
-
-            <h3>Real Numbers</h3>
-
             <p>
-                Number systems, Euclid's division
-                algorithm and applications.
-            </p>
-
-            <button
-                class="open-chapter"
-                onclick="chapterComingSoon('Real Numbers')">
-
-                OPEN NOTES →
-
-            </button>
-
-        </div>
-
-
-        <div class="chapter-card">
-
-            <div class="chapter-number">
-                CHAPTER
-            </div>
-
-            <h3>Polynomials</h3>
-
-            <p>
-                Zeros, relationships and
-                polynomial equations.
-            </p>
-
-            <button
-                class="open-chapter"
-                onclick="chapterComingSoon('Polynomials')">
-
-                OPEN NOTES →
-
-            </button>
-
-        </div>
-
-
-        <div class="chapter-card">
-
-            <div class="chapter-number">
-                CHAPTER
-            </div>
-
-            <h3>Pair of Linear Equations</h3>
-
-            <p>
-                Graphical and algebraic methods
-                of solving equations.
-            </p>
-
-            <button
-                class="open-chapter"
-                onclick="chapterComingSoon('Pair of Linear Equations')">
-
-                OPEN NOTES →
-
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- ================= PHYSICS ================= -->
-
-<div class="subject-panel" id="physics">
-
-    <div class="subject-heading">
-
-        <span>⚡</span>
-
-        <div>
-
-            <h3>Physics</h3>
-
-            <p>
-                Concepts • Laws • Diagrams • Numericals
+                The longest side is the <strong>Hypotenuse</strong>.
             </p>
 
         </div>
 
-    </div>
 
+        <h4>🧠 3. Identify the Three Sides</h4>
 
-    <div class="chapter-grid">
+        <div class="step">
 
+            <strong>Hypotenuse:</strong>
 
-        <div class="chapter-card demo-chapter">
+            <br>
 
-            <div class="chapter-number">
-                DEMO
-            </div>
+            The longest side of a right-angled triangle,
+            opposite the 90° angle.
 
-            <h3>Electric Current</h3>
+        </div>
 
-            <p>
-                Current, potential difference,
-                resistance, Ohm's law and numericals.
-            </p>
+        <div class="step">
 
-            <div class="chapter-tags">
+            <strong>Opposite:</strong>
 
-                <span>Concept</span>
-                <span>Formula</span>
-                <span>Numericals</span>
-                <span>Circuit</span>
+            <br>
 
-            </div>
+            The side opposite the selected angle θ.
 
-            <button
-                class="open-chapter"
-                onclick="openChapter('physicsCurrent')">
+        </div>
 
-                OPEN LESSON →
+        <div class="step">
 
-            </button>
+            <strong>Adjacent:</strong>
+
+            <br>
+
+            The side next to the selected angle θ,
+            excluding the hypotenuse.
 
         </div>
 
 
-        <div class="chapter-card">
+        <h4>🔵 4. Sine — SOH</h4>
 
-            <div class="chapter-number">
-                CHAPTER
-            </div>
+        <div class="formula">
 
-            <h3>Electricity</h3>
+            sin θ = Opposite / Hypotenuse
 
-            <p>
-                Electrical quantities, circuits,
-                resistance and applications.
-            </p>
-
-            <button
-                class="open-chapter"
-                onclick="chapterComingSoon('Electricity')">
-
-                OPEN NOTES →
-
-            </button>
+            <small>
+                S → O → H
+            </small>
 
         </div>
 
 
-        <div class="chapter-card">
+        <h4>🟢 5. Cosine — CAH</h4>
 
-            <div class="chapter-number">
-                CHAPTER
-            </div>
+        <div class="formula">
 
-            <h3>Electromagnetism</h3>
+            cos θ = Adjacent / Hypotenuse
 
-            <p>
-                Magnetic field, current and
-                electromagnetic effects.
-            </p>
-
-            <button
-                class="open-chapter"
-                onclick="chapterComingSoon('Electromagnetism')">
-
-                OPEN NOTES →
-
-            </button>
+            <small>
+                C → A → H
+            </small>
 
         </div>
 
 
-        <div class="chapter-card">
+        <h4>🟠 6. Tangent — TOA</h4>
 
-            <div class="chapter-number">
-                CHAPTER
+        <div class="formula">
+
+            tan θ = Opposite / Adjacent
+
+            <small>
+                T → O → A
+            </small>
+
+        </div>
+
+
+        <div class="quick-box">
+
+            <h4>🧠 EASY MEMORY TRICK</h4>
+
+            <br>
+
+            <strong>SOH</strong> → Sine = Opposite / Hypotenuse
+
+            <br><br>
+
+            <strong>CAH</strong> → Cosine = Adjacent / Hypotenuse
+
+            <br><br>
+
+            <strong>TOA</strong> → Tangent = Opposite / Adjacent
+
+        </div>
+
+
+        <h4>📝 7. Easy Solved Problem</h4>
+
+        <div class="question">
+
+            A right-angled triangle has an opposite side
+            of 3 cm and a hypotenuse of 5 cm.
+
+            <br><br>
+
+            Find sin θ.
+
+            <div class="formula">
+
+                sin θ = O/H
+
+                <br><br>
+
+                = 3/5
+
             </div>
 
-            <h3>Light</h3>
+            <strong>Answer: sin θ = 3/5</strong>
 
-            <p>
-                Reflection, refraction and
-                ray diagrams.
-            </p>
+        </div>
 
-            <button
-                class="open-chapter"
-                onclick="chapterComingSoon('Light')">
 
-                OPEN NOTES →
+        <h4>🧮 8. Medium Problem</h4>
 
-            </button>
+        <div class="question">
+
+            A right-angled triangle has an adjacent side
+            of 12 cm and a hypotenuse of 13 cm.
+
+            Find cos θ.
+
+            <br><br>
+
+            <strong>Step 1:</strong>
+            Identify the sides.
+
+            <br><br>
+
+            Adjacent = 12 cm
+
+            <br>
+
+            Hypotenuse = 13 cm
+
+            <br><br>
+
+            <strong>Step 2:</strong>
+
+            <div class="formula">
+                cos θ = A/H = 12/13
+            </div>
+
+            <strong>Answer: cos θ = 12/13</strong>
+
+        </div>
+
+
+        <h4>🔥 9. Board-Exam Type Problem</h4>
+
+        <div class="question">
+
+            In a right-angled triangle ABC,
+            ∠B = 90°.
+
+            If AB = 8 cm and BC = 6 cm,
+            find the value of tan C.
+
+            <br><br>
+
+            <strong>Thinking Process:</strong>
+
+            <br>
+
+            Do not immediately apply a formula.
+
+            <br><br>
+
+            First identify the angle → C.
+
+            <br>
+
+            Opposite to C → AB = 8 cm.
+
+            <br>
+
+            Adjacent to C → BC = 6 cm.
+
+            <br><br>
+
+            <div class="formula">
+
+                tan C = Opposite / Adjacent
+
+                <br><br>
+
+                = 8/6
+
+                <br><br>
+
+                = 4/3
+
+            </div>
+
+            <strong>Answer: tan C = 4/3</strong>
+
+        </div>
+
+
+        <h4>🔄 10. Different Question Patterns</h4>
+
+        <div class="question">
+            <strong>Pattern 1:</strong>
+            Direct formula-based question.
+        </div>
+
+        <div class="question">
+            <strong>Pattern 2:</strong>
+            Triangle diagram is given and sides must be identified.
+        </div>
+
+        <div class="question">
+            <strong>Pattern 3:</strong>
+            Missing side has to be calculated.
+        </div>
+
+        <div class="question">
+            <strong>Pattern 4:</strong>
+            Angle is changed and the correct sides
+            must be identified again.
+        </div>
+
+        <div class="question">
+            <strong>Pattern 5:</strong>
+            A real-life situation is given.
+        </div>
+
+        <div class="question">
+            <strong>Pattern 6:</strong>
+            Student must decide whether to use
+            sin, cos or tan.
+        </div>
+
+
+        <h4>⚠️ 11. Common Mistakes</h4>
+
+        <div class="warning">
+
+            ❌ Do not identify opposite and adjacent
+            without looking at the given angle.
+
+            <br><br>
+
+            ❌ Do not use the hypotenuse as the adjacent side.
+
+            <br><br>
+
+            ❌ Do not memorize only the formula.
+            Understand which sides are required.
+
+            <br><br>
+
+            ❌ Check units carefully in numerical problems.
+
+        </div>
+
+
+        <h4>🎯 12. Practice Questions</h4>
+
+        <div class="question">
+
+            <strong>Q1.</strong>
+
+            If opposite = 5 cm and hypotenuse = 13 cm,
+            find sin θ.
+
+        </div>
+
+        <div class="question">
+
+            <strong>Q2.</strong>
+
+            If adjacent = 8 cm and hypotenuse = 17 cm,
+            find cos θ.
+
+        </div>
+
+        <div class="question">
+
+            <strong>Q3.</strong>
+
+            If opposite = 9 cm and adjacent = 12 cm,
+            find tan θ.
+
+        </div>
+
+
+        <h4>⚡ 13. Quick Revision</h4>
+
+        <div class="quick-box">
+
+            <strong>SOH</strong>
+
+            <br>
+            sin θ = O/H
+
+            <br><br>
+
+            <strong>CAH</strong>
+
+            <br>
+            cos θ = A/H
+
+            <br><br>
+
+            <strong>TOA</strong>
+
+            <br>
+            tan θ = O/A
+
+            <br><br>
+
+            <strong>Golden Rule:</strong>
+
+            <br>
+
+            First identify the angle.
+            Then identify the three sides.
+            Then choose the ratio.
+
+        </div>
+
+
+        <h4>🏆 14. Study Hub Challenge</h4>
+
+        <div class="diagram">
+
+            <strong>
+
+                LOOK → IDENTIFY → CHOOSE → SUBSTITUTE → SOLVE → CHECK
+
+            </strong>
+
+            <br><br>
+
+            This is the process to follow
+            before answering a trigonometry problem.
 
         </div>
 
@@ -1875,129 +943,600 @@ function closeAdminFeature(){var m=document.getElementById('adminFeatureModal');
 
 <!-- ================= BIOLOGY ================= -->
 
-<div class="subject-panel" id="biology">
+<div class="card subject-card">
 
-    <div class="subject-heading">
+    <div class="card-icon">🧬</div>
 
-        <span>🧬</span>
+    <h3>Biology</h3>
 
-        <div>
+    <p>
+        Heredity — Traits, Genes & Variation
+    </p>
 
-            <h3>Biology</h3>
+    <div style="
+        display:flex;
+        align-items:center;
+        gap:10px;
+        margin-top:15px;
+        flex-wrap:wrap;
+    ">
 
-            <p>
-                Concepts • Diagrams • Definitions • Practice
-            </p>
+        <span class="subject-tag">
+            DEMO LESSON
+        </span>
+
+        <button
+            class="btn btn-primary open-lesson-btn"
+            onclick="openLesson(event,this)">
+            OPEN LESSON →
+        </button>
+
+    </div>
+
+
+    <div class="lesson-area">
+
+        <h4>🧬 1. What is Heredity?</h4>
+
+        <p>
+            Heredity is the transmission of characteristics
+            or traits from parents to offspring.
+        </p>
+
+
+        <h4>🧠 2. What are Traits?</h4>
+
+        <p>
+            A trait is a specific characteristic of an organism.
+        </p>
+
+        <div class="diagram">
+
+            <div class="diagram-title">
+                HEREDITY FLOW
+            </div>
+
+            👨 Parent
+
+            <br>
+            ↓
+
+            <br>
+
+            🧬 Genetic Information
+
+            <br>
+            ↓
+
+            <br>
+
+            👦 Offspring
+
+        </div>
+
+
+        <h4>🔬 3. Genes and Chromosomes</h4>
+
+        <p>
+            Genes contain hereditary information.
+            Genes are located on chromosomes.
+            Chromosomes are present in the nucleus of cells.
+        </p>
+
+        <div class="formula">
+
+            Chromosome → Gene → Trait
+
+        </div>
+
+
+        <h4>🌱 4. Variation</h4>
+
+        <p>
+            Offspring resemble their parents but may
+            also show differences. These differences are
+            called variations.
+        </p>
+
+
+        <h4>👨‍🔬 5. Mendel</h4>
+
+        <p>
+            Gregor Mendel conducted experiments on pea plants
+            and studied the inheritance of traits.
+        </p>
+
+
+        <div class="diagram">
+
+            🌱 Parent Plants
+
+            <br>
+            ↓
+
+            <br>
+
+            🧬 Hereditary Information
+
+            <br>
+            ↓
+
+            <br>
+
+            🌱 Offspring
+
+            <br><br>
+
+            <strong>
+                Similarity + Variation
+            </strong>
+
+        </div>
+
+
+        <h4>🔄 6. Question Patterns</h4>
+
+        <div class="question">
+            <strong>Pattern 1:</strong>
+            Define heredity.
+        </div>
+
+        <div class="question">
+            <strong>Pattern 2:</strong>
+            Explain variation.
+        </div>
+
+        <div class="question">
+            <strong>Pattern 3:</strong>
+            Explain the role of genes.
+        </div>
+
+        <div class="question">
+            <strong>Pattern 4:</strong>
+            Explain Mendel's experiments.
+        </div>
+
+        <div class="question">
+            <strong>Pattern 5:</strong>
+            Diagram or situation-based question.
+        </div>
+
+
+        <h4>⚠️ 7. Common Mistakes</h4>
+
+        <div class="warning">
+
+            ❌ Do not confuse genes with chromosomes.
+
+            <br><br>
+
+            ❌ Do not write variation as complete absence
+            of similarity between parents and offspring.
+
+            <br><br>
+
+            ❌ Use correct biological terminology.
+
+        </div>
+
+
+        <h4>🎯 8. Practice Question</h4>
+
+        <div class="question">
+
+            What is heredity?
+
+            <br><br>
+
+            <button
+                class="btn btn-primary"
+                onclick="showAnswer('bioAnswer')">
+
+                SHOW ANSWER
+
+            </button>
+
+            <div id="bioAnswer" class="answer">
+
+                Heredity is the transmission of
+                characteristics or traits from parents
+                to offspring.
+
+            </div>
+
+        </div>
+
+
+        <div class="quick-box">
+
+            <strong>QUICK REVISION</strong>
+
+            <br><br>
+
+            Heredity → Transmission of traits
+
+            <br>
+
+            Gene → Hereditary information
+
+            <br>
+
+            Variation → Differences in characteristics
+
+            <br>
+
+            Mendel → Pea plant experiments
 
         </div>
 
     </div>
 
+</div>
 
-    <div class="chapter-grid">
+
+<!-- ================= PHYSICS ================= -->
+
+<div class="card subject-card">
+
+    <div class="card-icon">⚡</div>
+
+    <h3>Physics</h3>
+
+    <p>
+        Electric Current — Concepts, Circuits & Problems
+    </p>
+
+    <div style="
+        display:flex;
+        align-items:center;
+        gap:10px;
+        margin-top:15px;
+        flex-wrap:wrap;
+    ">
+
+        <span class="subject-tag">
+            DEMO LESSON
+        </span>
+
+        <button
+            class="btn btn-primary open-lesson-btn"
+            onclick="openLesson(event,this)">
+            OPEN LESSON →
+        </button>
+
+    </div>
 
 
-        <div class="chapter-card demo-chapter">
+    <div class="lesson-area">
 
-            <div class="chapter-number">
-                DEMO
+        <h4>⚡ 1. What is Electric Current?</h4>
+
+        <p>
+            Electric current is the flow of electric charge
+            through a conductor.
+        </p>
+
+
+        <h4>🔋 2. Simple Electric Circuit</h4>
+
+        <div class="diagram">
+
+            <div class="diagram-title">
+                SIMPLE CIRCUIT
             </div>
 
-            <h3>Heredity</h3>
+            🔋 Battery
 
-            <p>
-                Traits, genes, chromosomes,
-                variation and inheritance.
-            </p>
+            <br>
+            ↓
 
-            <div class="chapter-tags">
+            <br>
 
-                <span>Concept</span>
-                <span>Diagram</span>
-                <span>Definitions</span>
-                <span>Practice</span>
+            ⚡ Current
 
-            </div>
+            <br>
+            ↓
 
-            <button
-                class="open-chapter"
-                onclick="openChapter('biologyHeredity')">
+            <br>
 
-                OPEN LESSON →
+            💡 Bulb
 
-            </button>
+            <br>
+            ↓
+
+            <br>
+
+            🔋 Battery
+
+            <br><br>
+
+            <strong>
+                Closed circuit → Current can flow
+            </strong>
 
         </div>
 
 
-        <div class="chapter-card">
+        <h4>📌 3. Important Terms</h4>
 
-            <div class="chapter-number">
-                CHAPTER
-            </div>
+        <div class="step">
 
-            <h3>Life Processes</h3>
+            <strong>Electric Current:</strong>
 
-            <p>
-                Nutrition, respiration,
-                transportation and excretion.
-            </p>
+            <br>
 
-            <button
-                class="open-chapter"
-                onclick="chapterComingSoon('Life Processes')">
+            Rate of flow of electric charge.
 
-                OPEN NOTES →
+        </div>
 
-            </button>
+        <div class="step">
+
+            <strong>Potential Difference:</strong>
+
+            <br>
+
+            Work done per unit charge.
+
+        </div>
+
+        <div class="step">
+
+            <strong>Resistance:</strong>
+
+            <br>
+
+            Opposition offered to the flow of electric current.
 
         </div>
 
 
-        <div class="chapter-card">
+        <h4>⚡ 4. Important Formula</h4>
 
-            <div class="chapter-number">
-                CHAPTER
-            </div>
+        <div class="formula">
 
-            <h3>Control & Coordination</h3>
+            I = Q/t
 
-            <p>
-                Nervous system, hormones
-                and coordination.
-            </p>
-
-            <button
-                class="open-chapter"
-                onclick="chapterComingSoon('Control and Coordination')">
-
-                OPEN NOTES →
-
-            </button>
+            <small>
+                Current = Charge / Time
+            </small>
 
         </div>
 
 
-        <div class="chapter-card">
+        <h4>⚡ 5. Ohm's Law</h4>
 
-            <div class="chapter-number">
-                CHAPTER
+        <div class="formula">
+
+            V = IR
+
+            <small>
+                V = Potential Difference
+                | I = Current
+                | R = Resistance
+            </small>
+
+        </div>
+
+
+        <h4>🧮 6. Easy Numerical</h4>
+
+        <div class="question">
+
+            Resistance = 5 Ω
+
+            <br>
+
+            Voltage = 10 V
+
+            <br><br>
+
+            Find current.
+
+            <br><br>
+
+            <div class="formula">
+
+                I = V/R
+
+                <br><br>
+
+                I = 10/5
+
+                <br><br>
+
+                I = 2 A
+
             </div>
 
-            <h3>Reproduction</h3>
+            <strong>Answer: 2 A</strong>
 
-            <p>
-                Reproductive processes,
-                development and related concepts.
-            </p>
+        </div>
 
-            <button
-                class="open-chapter"
-                onclick="chapterComingSoon('Reproduction')">
 
-                OPEN NOTES →
+        <h4>🧮 7. Medium Numerical</h4>
 
-            </button>
+        <div class="question">
+
+            A current of 3 A flows through a resistor
+            of 4 Ω.
+
+            Find the potential difference.
+
+            <br><br>
+
+            <strong>Given:</strong>
+
+            <br>
+
+            I = 3 A
+
+            <br>
+
+            R = 4 Ω
+
+            <br><br>
+
+            <div class="formula">
+
+                V = IR
+
+                <br><br>
+
+                V = 3 × 4
+
+                <br><br>
+
+                V = 12 V
+
+            </div>
+
+            <strong>Answer: 12 V</strong>
+
+        </div>
+
+
+        <h4>🔥 8. Board-Exam Type Numerical</h4>
+
+        <div class="question">
+
+            A potential difference of 20 V is applied
+            across a resistor of resistance 10 Ω.
+
+            Calculate the current flowing through it.
+
+            <br><br>
+
+            <strong>Step 1:</strong>
+            Write the formula.
+
+            <br><br>
+
+            <div class="formula">
+                I = V/R
+            </div>
+
+            <strong>Step 2:</strong>
+            Substitute the values.
+
+            <br><br>
+
+            <div class="formula">
+                I = 20/10 = 2 A
+            </div>
+
+            <strong>Answer: 2 A</strong>
+
+        </div>
+
+
+        <h4>🔄 9. Different Question Patterns</h4>
+
+        <div class="question">
+            <strong>Pattern 1:</strong>
+            Direct definition.
+        </div>
+
+        <div class="question">
+            <strong>Pattern 2:</strong>
+            Formula-based numerical.
+        </div>
+
+        <div class="question">
+            <strong>Pattern 3:</strong>
+            Circuit diagram.
+        </div>
+
+        <div class="question">
+            <strong>Pattern 4:</strong>
+            Unit conversion.
+        </div>
+
+        <div class="question">
+            <strong>Pattern 5:</strong>
+            Application-based problem.
+        </div>
+
+
+        <h4>⚠️ 10. Common Mistakes</h4>
+
+        <div class="warning">
+
+            ❌ Always write the formula first.
+
+            <br><br>
+
+            ❌ Check whether the units are correct.
+
+            <br><br>
+
+            ❌ Do not confuse current, voltage and resistance.
+
+            <br><br>
+
+            ❌ Write the final answer with the correct unit.
+
+        </div>
+
+
+        <h4>🎯 11. Practice Problems</h4>
+
+        <div class="question">
+
+            <strong>Q1.</strong>
+
+            A 10 Ω resistor is connected to a
+            20 V source. Find current.
+
+        </div>
+
+        <div class="question">
+
+            <strong>Q2.</strong>
+
+            A current of 2 A flows through a
+            5 Ω resistor. Find voltage.
+
+        </div>
+
+        <div class="question">
+
+            <strong>Q3.</strong>
+
+            A charge of 20 C flows through a conductor
+            in 5 seconds. Find current.
+
+        </div>
+
+
+        <h4>⚡ 12. Quick Revision</h4>
+
+        <div class="quick-box">
+
+            <strong>I = Q/t</strong>
+
+            <br><br>
+
+            <strong>V = IR</strong>
+
+            <br><br>
+
+            <strong>I = V/R</strong>
+
+            <br><br>
+
+            <strong>R = V/I</strong>
+
+            <br><br>
+
+            Current → Ampere (A)
+
+            <br>
+
+            Voltage → Volt (V)
+
+            <br>
+
+            Resistance → Ohm (Ω)
 
         </div>
 
@@ -2008,771 +1547,507 @@ function closeAdminFeature(){var m=document.getElementById('adminFeatureModal');
 
 <!-- ================= SOCIAL ================= -->
 
-<div class="subject-panel" id="social">
-
-    <div class="subject-heading">
-
-        <span>🏛️</span>
-
-        <div>
-
-            <h3>Social Studies</h3>
-
-            <p>
-                History • Geography • Civics • Economics
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <div class="chapter-grid">
-
-
-        <div class="chapter-card demo-chapter">
-
-            <div class="chapter-number">
-                DEMO
-            </div>
-
-            <h3>Our Constitution & Its Principles</h3>
-
-            <p>
-                Constitution, democracy,
-                equality, justice, liberty and fraternity.
-            </p>
-
-            <div class="chapter-tags">
-
-                <span>Concept</span>
-                <span>Key Points</span>
-                <span>Answer Writing</span>
-                <span>Practice</span>
-
-            </div>
-
-            <button
-                class="open-chapter"
-                onclick="openChapter('socialConstitution')">
-
-                OPEN LESSON →
-
-            </button>
-
-        </div>
-
-
-        <div class="chapter-card">
-
-            <div class="chapter-number">
-                CHAPTER
-            </div>
-
-            <h3>Resources & Development</h3>
-
-            <p>
-                Resources, development,
-                planning and sustainability.
-            </p>
-
-            <button
-                class="open-chapter"
-                onclick="chapterComingSoon('Resources and Development')">
-
-                OPEN NOTES →
-
-            </button>
-
-        </div>
-
-
-        <div class="chapter-card">
-
-            <div class="chapter-number">
-                CHAPTER
-            </div>
-
-            <h3>Power Sharing</h3>
-
-            <p>
-                Democracy, institutions
-                and distribution of power.
-            </p>
-
-            <button
-                class="open-chapter"
-                onclick="chapterComingSoon('Power Sharing')">
-
-                OPEN NOTES →
-
-            </button>
-
-        </div>
-
-
-        <div class="chapter-card">
-
-            <div class="chapter-number">
-                CHAPTER
-            </div>
-
-            <h3>Development</h3>
-
-            <p>
-                Development indicators,
-                income and quality of life.
-            </p>
-
-            <button
-                class="open-chapter"
-                onclick="chapterComingSoon('Development')">
-
-                OPEN NOTES →
-
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- ================= ENGLISH ================= -->
-
-<div class="subject-panel" id="english">
-
-    <div class="subject-heading">
-
-        <span>📖</span>
-
-        <div>
-
-            <h3>English</h3>
-
-            <p>
-                Grammar • Literature • Writing Skills
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <div class="chapter-grid">
-
-
-        <div class="chapter-card">
-
-            <div class="chapter-number">
-                UNIT
-            </div>
-
-            <h3>Reading Skills</h3>
-
-            <p>
-                Reading comprehension,
-                interpretation and answers.
-            </p>
-
-            <button
-                class="open-chapter"
-                onclick="chapterComingSoon('Reading Skills')">
-
-                OPEN NOTES →
-
-            </button>
-
-        </div>
-
-
-        <div class="chapter-card">
-
-            <div class="chapter-number">
-                UNIT
-            </div>
-
-            <h3>Grammar</h3>
-
-            <p>
-                Important grammar concepts
-                and practice questions.
-            </p>
-
-            <button
-                class="open-chapter"
-                onclick="chapterComingSoon('English Grammar')">
-
-                OPEN NOTES →
-
-            </button>
-
-        </div>
-
-
-        <div class="chapter-card">
-
-            <div class="chapter-number">
-                UNIT
-            </div>
-
-            <h3>Writing Skills</h3>
-
-            <p>
-                Letter writing, reports,
-                essays and other formats.
-            </p>
-
-            <button
-                class="open-chapter"
-                onclick="chapterComingSoon('Writing Skills')">
-
-                OPEN NOTES →
-
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- ================= TELUGU ================= -->
-
-<div class="subject-panel" id="telugu">
-
-    <div class="subject-heading">
-
-        <span>📝</span>
-
-        <div>
-
-            <h3>Telugu</h3>
-
-            <p>
-                Lessons • Grammar • Writing • Practice
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <div class="chapter-grid">
-
-
-        <div class="chapter-card">
-
-            <div class="chapter-number">
-                UNIT
-            </div>
-
-            <h3>పాఠాలు</h3>
-
-            <p>
-                పాఠ్యాంశాల సులభమైన వివరణ
-                మరియు ముఖ్యమైన ప్రశ్నలు.
-            </p>
-
-            <button
-                class="open-chapter"
-                onclick="chapterComingSoon('Telugu Lessons')">
-
-                OPEN NOTES →
-
-            </button>
-
-        </div>
-
-
-        <div class="chapter-card">
-
-            <div class="chapter-number">
-                UNIT
-            </div>
-
-            <h3>వ్యాకరణం</h3>
-
-            <p>
-                ముఖ్యమైన వ్యాకరణ అంశాలు
-                మరియు అభ్యాస ప్రశ్నలు.
-            </p>
-
-            <button
-                class="open-chapter"
-                onclick="chapterComingSoon('Telugu Grammar')">
-
-                OPEN NOTES →
-
-            </button>
-
-        </div>
-
-
-        <div class="chapter-card">
-
-            <div class="chapter-number">
-                UNIT
-            </div>
-
-            <h3>రచనా నైపుణ్యాలు</h3>
-
-            <p>
-                పరీక్షలో సమాధానాలను
-                సరైన విధంగా రాయడం.
-            </p>
-
-            <button
-                class="open-chapter"
-                onclick="chapterComingSoon('Telugu Writing')">
-
-                OPEN NOTES →
-
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- ================= DEMO LESSON POPUP ================= -->
-
-<div id="lessonPopup" class="lesson-popup">
-
-    <div class="lesson-popup-content">
+<div class="card subject-card">
+
+    <div class="card-icon">🏛️</div>
+
+    <h3>Social Studies</h3>
+
+    <p>
+        Our Constitution and Its Principles
+    </p>
+
+    <div style="
+        display:flex;
+        align-items:center;
+        gap:10px;
+        margin-top:15px;
+        flex-wrap:wrap;
+    ">
+
+        <span class="subject-tag">
+            DEMO LESSON
+        </span>
 
         <button
-            class="close-popup"
-            onclick="closeChapter()">
-            ×
+            class="btn btn-primary open-lesson-btn"
+            onclick="openLesson(event,this)">
+            OPEN LESSON →
         </button>
 
-
-        <!-- MATH LESSON -->
-
-        <div class="popup-lesson" id="mathTrigonometry">
-
-            <span class="popup-badge">
-                DEMO LESSON
-            </span>
-
-            <h2>📐 Trigonometry</h2>
-
-            <p class="popup-subtitle">
-                Sine • Cosine • Tangent • Triangle Problems
-            </p>
+    </div>
 
 
-            <div class="popup-block">
+    <div class="lesson-area">
 
-                <h3>1. Concept</h3>
+        <h4>🏛️ 1. What is a Constitution?</h4>
 
-                <p>
-                    Trigonometry explains the relationship
-                    between the sides and angles of a
-                    right-angled triangle.
-                </p>
-
-            </div>
+        <p>
+            A Constitution provides the basic framework
+            for the functioning of a country and its government.
+        </p>
 
 
-            <div class="popup-diagram">
+        <div class="diagram">
 
-<pre>
-                 /|
-                / |
-               /  | Opposite
-              /   |
-             / θ  |
-            /_____|
-             Adjacent
+            🏛️ CONSTITUTION
 
-          Hypotenuse
-</pre>
+            <br>
+            ↓
+            <br>
+            Government
+            <br>
+            ↓
+            <br>
+            Rights & Duties
+            <br>
+            ↓
+            <br>
+            Democratic Principles
 
-            </div>
-
-
-            <div class="popup-block">
-
-                <h3>2. Important Formulae</h3>
-
-                <div class="popup-formula">
-
-                    sin θ = Opposite / Hypotenuse
-
-                </div>
-
-                <div class="popup-formula">
-
-                    cos θ = Adjacent / Hypotenuse
-
-                </div>
-
-                <div class="popup-formula">
-
-                    tan θ = Opposite / Adjacent
-
-                </div>
-
-            </div>
+        </div>
 
 
-            <div class="popup-block">
+        <h4>📖 2. Why is a Constitution Important?</h4>
 
-                <h3>3. Solved Problem</h3>
+        <ul>
 
-                <p>
-                    If opposite = 3 cm and hypotenuse = 5 cm,
-                    find sin θ.
-                </p>
+            <li>
+                Provides a framework for government.
+            </li>
 
-                <div class="popup-answer">
+            <li>
+                Defines powers and responsibilities.
+            </li>
 
-                    sin θ = 3/5
+            <li>
+                Protects important rights.
+            </li>
 
-                </div>
+            <li>
+                Expresses fundamental values.
+            </li>
 
-            </div>
+            <li>
+                Supports democratic governance.
+            </li>
+
+        </ul>
 
 
-            <div class="popup-block">
+        <h4>⚖️ 3. Key Principles</h4>
 
-                <h3>4. Exam Method</h3>
+        <div class="step">
 
-                <div class="exam-flow">
+            <strong>Democracy</strong>
 
-                    LOOK
-                    →
-                    IDENTIFY
-                    →
-                    CHOOSE FORMULA
-                    →
-                    SUBSTITUTE
-                    →
-                    SOLVE
-                    →
-                    CHECK
+            <br>
 
-                </div>
+            People participate in choosing
+            their representatives.
+
+        </div>
+
+        <div class="step">
+
+            <strong>Equality</strong>
+
+            <br>
+
+            Citizens are entitled to equal treatment
+            under the constitutional framework.
+
+        </div>
+
+        <div class="step">
+
+            <strong>Justice</strong>
+
+            <br>
+
+            The constitutional system aims to promote
+            justice in society.
+
+        </div>
+
+        <div class="step">
+
+            <strong>Liberty</strong>
+
+            <br>
+
+            Important freedoms are protected
+            within the constitutional framework.
+
+        </div>
+
+        <div class="step">
+
+            <strong>Fraternity</strong>
+
+            <br>
+
+            Promotes unity and brotherhood among citizens.
+
+        </div>
+
+
+        <h4>🔄 4. Different Question Patterns</h4>
+
+        <div class="question">
+
+            <strong>Pattern 1:</strong>
+            Direct definition.
+
+        </div>
+
+        <div class="question">
+
+            <strong>Pattern 2:</strong>
+            Explain a constitutional principle.
+
+        </div>
+
+        <div class="question">
+
+            <strong>Pattern 3:</strong>
+            Statement-based question.
+
+        </div>
+
+        <div class="question">
+
+            <strong>Pattern 4:</strong>
+            Match principle with meaning.
+
+        </div>
+
+        <div class="question">
+
+            <strong>Pattern 5:</strong>
+            Situation/application-based question.
+
+        </div>
+
+
+        <h4>⚠️ 5. Common Mistakes</h4>
+
+        <div class="warning">
+
+            ❌ Avoid writing only one-word answers
+            when explanation is required.
+
+            <br><br>
+
+            ❌ Use key constitutional terms.
+
+            <br><br>
+
+            ❌ Structure long answers with points.
+
+        </div>
+
+
+        <h4>📝 6. Answer Writing Method</h4>
+
+        <div class="step">
+
+            <strong>Step 1:</strong>
+            Start with the definition or introduction.
+
+        </div>
+
+        <div class="step">
+
+            <strong>Step 2:</strong>
+            Write the important points.
+
+        </div>
+
+        <div class="step">
+
+            <strong>Step 3:</strong>
+            Give an example when appropriate.
+
+        </div>
+
+        <div class="step">
+
+            <strong>Step 4:</strong>
+            Finish with a short conclusion.
+
+        </div>
+
+
+        <h4>🎯 7. Practice Question</h4>
+
+        <div class="question">
+
+            Why is a Constitution important
+            for a country?
+
+            <br><br>
+
+            <button
+                class="btn btn-primary"
+                onclick="showAnswer('socialAnswer')">
+
+                SHOW ANSWER
+
+            </button>
+
+            <div id="socialAnswer" class="answer">
+
+                A Constitution provides the basic framework
+                for governance, defines important institutions
+                and principles, and helps protect constitutional
+                rights and values.
 
             </div>
 
         </div>
 
 
-        <!-- PHYSICS LESSON -->
+        <div class="quick-box">
 
-        <div class="popup-lesson" id="physicsCurrent">
+            <strong>QUICK REVISION</strong>
 
-            <span class="popup-badge">
-                DEMO LESSON
-            </span>
+            <br><br>
 
-            <h2>⚡ Electric Current</h2>
+            Constitution → Framework
 
-            <p class="popup-subtitle">
-                Current • Voltage • Resistance • Numericals
-            </p>
+            <br>
 
+            Democracy → People's participation
 
-            <div class="popup-block">
+            <br>
 
-                <h3>1. Concept</h3>
+            Equality → Equal treatment
 
-                <p>
-                    Electric current is the flow of
-                    electric charge through a conductor.
-                </p>
+            <br>
 
-            </div>
+            Justice → Fairness
 
+            <br>
 
-            <div class="popup-diagram">
+            Liberty → Freedom
 
-<pre>
-       🔋
-       │
-       │
-      ─┴──────💡
-      │       │
-      └───────┘
+            <br>
 
-       SIMPLE CIRCUIT
-</pre>
-
-            </div>
-
-
-            <div class="popup-block">
-
-                <h3>2. Important Formulae</h3>
-
-                <div class="popup-formula">
-
-                    I = Q/t
-
-                </div>
-
-                <div class="popup-formula">
-
-                    V = IR
-
-                </div>
-
-                <div class="popup-formula">
-
-                    I = V/R
-
-                </div>
-
-            </div>
-
-
-            <div class="popup-block">
-
-                <h3>3. Solved Problem</h3>
-
-                <p>
-                    V = 20 V and R = 10 Ω.
-                    Find current.
-                </p>
-
-                <div class="popup-answer">
-
-                    I = V/R
-
-                    <br><br>
-
-                    I = 20/10
-
-                    <br><br>
-
-                    <strong>I = 2 A</strong>
-
-                </div>
-
-            </div>
-
-
-            <div class="popup-block">
-
-                <h3>4. Exam Method</h3>
-
-                <div class="exam-flow">
-
-                    GIVEN
-                    →
-                    FORMULA
-                    →
-                    SUBSTITUTE
-                    →
-                    CALCULATE
-                    →
-                    UNIT
-                    →
-                    FINAL ANSWER
-
-                </div>
-
-            </div>
+            Fraternity → Unity
 
         </div>
 
+    </div>
 
-        <!-- BIOLOGY LESSON -->
+</div>
 
-        <div class="popup-lesson" id="biologyHeredity">
-
-            <span class="popup-badge">
-                DEMO LESSON
-            </span>
-
-            <h2>🧬 Heredity</h2>
-
-            <p class="popup-subtitle">
-                Traits • Genes • Chromosomes • Variation
-            </p>
+</div>
+</section>
 
 
-            <div class="popup-block">
+<!-- ================= PAPERS ================= -->
 
-                <h3>1. Concept</h3>
+<section id="papers">
 
-                <p>
-                    Heredity is the transmission of
-                    characteristics from parents to offspring.
-                </p>
+<div class="section-title">
 
-            </div>
+    <h2>📝 Previous Year & Sample Papers</h2>
 
+    <p>
+        Practice familiar questions and new question patterns.
+    </p>
 
-            <div class="popup-diagram">
-
-<pre>
-       PARENTS
-          ↓
-       CHROMOSOMES
-          ↓
-         GENES
-          ↓
-        TRAITS
-          ↓
-       OFFSPRING
-</pre>
-
-            </div>
+</div>
 
 
-            <div class="popup-block">
+<div class="feature-grid">
 
-                <h3>2. Important Terms</h3>
+    <div class="card">
 
-                <ul>
+        <div class="card-icon">📄</div>
 
-                    <li>
-                        <strong>Heredity:</strong>
-                        Transmission of traits.
-                    </li>
+        <h3>Previous Year Papers</h3>
 
-                    <li>
-                        <strong>Gene:</strong>
-                        Unit of hereditary information.
-                    </li>
+        <p>
+            Board examination papers arranged subject-wise.
+        </p>
 
-                    <li>
-                        <strong>Variation:</strong>
-                        Differences in characteristics.
-                    </li>
+        <br>
 
-                    <li>
-                        <strong>Mendel:</strong>
-                        Pioneer of inheritance studies.
-                    </li>
+        <button
+            class="btn btn-primary"
+            onclick="demoMessage('Previous Year Papers')">
 
-                </ul>
+            OPEN PAPERS
 
-            </div>
+        </button>
+
+    </div>
 
 
-            <div class="popup-block">
+    <div class="card">
 
-                <h3>3. Exam Focus</h3>
+        <div class="card-icon">📑</div>
 
-                <div class="exam-flow">
+        <h3>Sample Papers</h3>
 
-                    DEFINITION
-                    →
-                    CONCEPT
-                    →
-                    DIAGRAM
-                    →
-                    EXAMPLE
-                    →
-                    CONCLUSION
+        <p>
+            Examination-style sample papers.
+        </p>
 
-                </div>
+        <br>
 
-            </div>
+        <button
+            class="btn btn-primary"
+            onclick="demoMessage('Sample Papers')">
+
+            OPEN PAPERS
+
+        </button>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-icon">🔄</div>
+
+        <h3>Question Patterns</h3>
+
+        <p>
+            One concept presented in multiple ways.
+        </p>
+
+        <br>
+
+        <button
+            class="btn btn-primary"
+            onclick="demoMessage('Question Pattern Practice')">
+
+            PRACTICE
+
+        </button>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= FORMULAS ================= -->
+
+<section id="formulas">
+
+<div class="section-title">
+
+    <h2>📐 Important Formulas & Diagrams</h2>
+
+    <p>
+        Quick revision resources.
+    </p>
+
+</div>
+
+
+<div class="feature-grid">
+
+    <div class="card">
+
+        <div class="card-icon">📐</div>
+
+        <h3>Trigonometry</h3>
+
+        <div class="formula">
+
+            sin θ = O/H
+
+            <br><br>
+
+            cos θ = A/H
+
+            <br><br>
+
+            tan θ = O/A
 
         </div>
 
-
-        <!-- SOCIAL LESSON -->
-
-        <div class="popup-lesson" id="socialConstitution">
-
-            <span class="popup-badge">
-                DEMO LESSON
-            </span>
-
-            <h2>🏛️ Our Constitution & Its Principles</h2>
-
-            <p class="popup-subtitle">
-                Constitution • Democracy • Equality • Justice
-            </p>
+    </div>
 
 
-            <div class="popup-block">
+    <div class="card">
 
-                <h3>1. Concept</h3>
+        <div class="card-icon">⚡</div>
 
-                <p>
-                    A Constitution provides the basic framework
-                    for governance and expresses important
-                    principles and values.
-                </p>
+        <h3>Electric Current</h3>
 
-            </div>
+        <div class="formula">
 
+            I = Q/t
 
-            <div class="popup-diagram">
+            <br><br>
 
-<pre>
-             CONSTITUTION
-                   ↓
-        ┌──────────┼──────────┐
-        ↓          ↓          ↓
-    DEMOCRACY   EQUALITY    JUSTICE
-        ↓          ↓          ↓
-    PEOPLE      EQUAL      FAIRNESS
-</pre>
+            V = IR
 
-            </div>
+            <br><br>
+
+            I = V/R
+
+        </div>
+
+    </div>
 
 
-            <div class="popup-block">
+    <div class="card">
 
-                <h3>2. Key Principles</h3>
+        <div class="card-icon">🧬</div>
 
-                <ul>
+        <h3>Heredity</h3>
 
-                    <li>
-                        Democracy
-                    </li>
+        <div class="diagram">
 
-                    <li>
-                        Equality
-                    </li>
+            Parents
 
-                    <li>
-                        Justice
-                    </li>
+            <br>
+            ↓
+            <br>
+            Genes
 
-                    <li>
-                        Liberty
-                    </li>
+            <br>
+            ↓
+            <br>
+            Traits
 
-                    <li>
-                        Fraternity
-                    </li>
+            <br>
+            ↓
+            <br>
+            Offspring
 
-                </ul>
+        </div>
 
-            </div>
+    </div>
 
 
-            <div class="popup-block">
+    <div class="card">
 
-                <h3>3. Answer Writing Method</h3>
+        <div class="card-icon">🏛️</div>
 
-                <div class="exam-flow">
+        <h3>Constitution</h3>
 
-                    INTRODUCTION
-                    →
-                    KEY POINTS
-                    →
-                    EXAMPLE
-                    →
-                    CONCLUSION
+        <div class="diagram">
 
-                </div>
+            Constitution
 
-            </div>
+            <br>
+            ↓
+            <br>
+            Rights • Duties
+
+            <br>
+            ↓
+            <br>
+            Democracy
 
         </div>
 
@@ -2783,679 +2058,577 @@ function closeAdminFeature(){var m=document.getElementById('adminFeatureModal');
 </section>
 
 
-<!-- ================= SECTION 2 CSS ================= -->
+<!-- ================= 90 DAYS ================= -->
 
-<style>
+<section id="revision">
 
-.subject-menu{
+<div class="section-title">
 
-    max-width:1200px;
+    <h2>📅 90-Day Revision Plan</h2>
 
-    margin:0 auto 35px;
+    <p>
+        A structured roadmap for examination preparation.
+    </p>
 
-    display:flex;
+</div>
 
-    justify-content:center;
 
-    flex-wrap:wrap;
+<div class="feature-grid">
 
-    gap:10px;
+    <div class="card">
 
-}
+        <h3>Days 1–30</h3>
 
-.subject-btn{
+        <p>
+            <strong>Concept Building</strong>
+        </p>
 
-    border:2px solid #087f5b;
+        <p>
+            Complete important lessons and
+            understand core concepts.
+        </p>
 
-    background:white;
+    </div>
 
-    color:#087f5b;
 
-    padding:11px 18px;
+    <div class="card">
 
-    border-radius:25px;
+        <h3>Days 31–60</h3>
 
-    cursor:pointer;
+        <p>
+            <strong>Practice Phase</strong>
+        </p>
 
-    font-weight:bold;
+        <p>
+            Practice formulas, diagrams,
+            exercises and previous papers.
+        </p>
 
-    transition:.2s;
+    </div>
 
-}
 
-.subject-btn:hover,
-.subject-btn.active{
+    <div class="card">
 
-    background:#087f5b;
+        <h3>Days 61–80</h3>
 
-    color:white;
+        <p>
+            <strong>Testing Phase</strong>
+        </p>
 
-}
+        <p>
+            Chapter tests, subject tests
+            and mock examinations.
+        </p>
 
-.subject-panel{
+    </div>
 
-    max-width:1200px;
 
-    margin:auto;
+    <div class="card">
 
-    display:none;
+        <h3>Days 81–90</h3>
 
-}
+        <p>
+            <strong>Final Revision</strong>
+        </p>
 
-.subject-panel.active{
+        <p>
+            Revise weak areas, formulas,
+            diagrams and important concepts.
+        </p>
 
-    display:block;
+    </div>
 
-    animation:fadeIn .3s ease;
+</div>
 
-}
+</section>
 
-@keyframes fadeIn{
 
-    from{
+<!-- ================= VIDEOS ================= -->
 
-        opacity:0;
+<section>
 
-        transform:translateY(10px);
+<div class="section-title">
 
-    }
+    <h2>🎥 Best Concept Videos</h2>
 
-    to{
+    <p>
+        Visual explanations for difficult concepts.
+    </p>
 
-        opacity:1;
+</div>
 
-        transform:translateY(0);
 
-    }
+<div class="feature-grid">
 
-}
+    <div class="card">
 
-.subject-heading{
+        <div class="card-icon">🧬</div>
 
-    background:linear-gradient(
-        135deg,
-        #064d3b,
-        #087f5b
-    );
+        <h3>Biology Videos</h3>
 
-    color:white;
+        <p>
+            Concept-based Heredity learning videos.
+        </p>
 
-    border-radius:15px;
+        <br>
 
-    padding:25px;
+        <button
+            class="btn btn-primary"
+            onclick="demoMessage('Biology Videos')">
 
-    display:flex;
+            WATCH
 
-    align-items:center;
+        </button>
 
-    gap:18px;
+    </div>
 
-    margin-bottom:25px;
 
-}
+    <div class="card">
 
-.subject-heading > span{
+        <div class="card-icon">⚡</div>
 
-    font-size:45px;
+        <h3>Physics Videos</h3>
 
-}
+        <p>
+            Electric Current visual explanations.
+        </p>
 
-.subject-heading h3{
+        <br>
 
-    font-size:27px;
+        <button
+            class="btn btn-primary"
+            onclick="demoMessage('Physics Videos')">
 
-}
+            WATCH
 
-.subject-heading p{
+        </button>
 
-    opacity:.85;
+    </div>
 
-}
 
-.chapter-grid{
+    <div class="card">
 
-    display:grid;
+        <div class="card-icon">📐</div>
 
-    grid-template-columns:
-    repeat(auto-fit,minmax(250px,1fr));
+        <h3>Maths Videos</h3>
 
-    gap:20px;
+        <p>
+            Trigonometry visual learning resources.
+        </p>
 
-}
+        <br>
 
-.chapter-card{
+        <button
+            class="btn btn-primary"
+            onclick="demoMessage('Maths Videos')">
 
-    background:white;
+            WATCH
 
-    border-radius:15px;
+        </button>
 
-    padding:25px;
+    </div>
 
-    box-shadow:
-    0 5px 20px rgba(0,0,0,.07);
+</div>
 
-    border:1px solid #e1eee9;
+</section>
 
-    transition:.25s;
 
-}
+<!-- ================= MOCK TEST ================= -->
 
-.chapter-card:hover{
+<section id="tests" class="mock-section">
 
-    transform:translateY(-5px);
+<div class="mock-box">
 
-    box-shadow:
-    0 12px 25px rgba(0,0,0,.10);
+    <h2>🎯 Self & Mock Exams</h2>
 
-}
+    <p>
+        Test your understanding.
+        Identify weak areas.
+        Improve before the final examination.
+    </p>
 
-.chapter-card.demo-chapter{
+    <br>
 
-    border:2px solid #087f5b;
+    <button
+        class="btn btn-outline"
+        onclick="startDemoTest()">
 
-    background:
-    linear-gradient(
-        180deg,
-        #f0fbf7,
-        #ffffff
-    );
+        START DEMO TEST
 
-}
+    </button>
 
-.chapter-number{
+    <div id="testArea"></div>
 
-    display:inline-block;
+</div>
 
-    background:#eaf8f2;
+</section>
 
-    color:#087f5b;
 
-    padding:5px 10px;
+<!-- ================= EXAM TIPS ================= -->
 
-    border-radius:20px;
+<section>
 
-    font-size:11px;
+<div class="section-title">
 
-    font-weight:bold;
+    <h2>🏆 Board Exam Tips & Tricks</h2>
 
-    margin-bottom:12px;
+    <p>
+        Simple strategies for better examination preparation.
+    </p>
 
-}
+</div>
 
-.chapter-card h3{
 
-    color:#064d3b;
+<div class="feature-grid">
 
-    margin-bottom:8px;
+    <div class="card">
 
-}
+        <div class="card-icon">🔍</div>
 
-.chapter-card p{
+        <h3>Read Carefully</h3>
 
-    color:#687871;
+        <p>
+            Understand exactly what the question asks.
+        </p>
 
-    font-size:14px;
+    </div>
 
-}
 
-.chapter-tags{
+    <div class="card">
 
-    display:flex;
+        <div class="card-icon">🧠</div>
 
-    flex-wrap:wrap;
+        <h3>Identify the Concept</h3>
 
-    gap:6px;
+        <p>
+            Ask which concept the question is testing.
+        </p>
 
-    margin:15px 0;
+    </div>
 
-}
 
-.chapter-tags span{
+    <div class="card">
 
-    background:#eaf8f2;
+        <div class="card-icon">⏱️</div>
 
-    color:#087f5b;
+        <h3>Manage Time</h3>
 
-    padding:4px 8px;
+        <p>
+            Practice timed examinations.
+        </p>
 
-    border-radius:15px;
+    </div>
 
-    font-size:10px;
 
-    font-weight:bold;
+    <div class="card">
 
-}
+        <div class="card-icon">⚠️</div>
 
-.open-chapter{
+        <h3>Review Mistakes</h3>
 
-    margin-top:10px;
+        <p>
+            Understand why an answer was wrong.
+        </p>
 
-    border:none;
+    </div>
 
-    background:#087f5b;
+</div>
 
-    color:white;
+</section>
 
-    padding:10px 15px;
 
-    border-radius:7px;
+<!-- ================= MOTIVATION & CAREER ================= -->
 
-    cursor:pointer;
+<section id="career">
 
-    font-weight:bold;
+<div class="section-title">
 
-}
+    <h2>💡 Motivation Corner & Career Guidance</h2>
 
-.open-chapter:hover{
+    <p>
+        Your Class 10 journey is an important step
+        toward your future.
+    </p>
 
-    background:#064d3b;
+</div>
 
-}
 
+<div class="feature-grid">
 
-/* POPUP */
+    <div class="card">
 
-.lesson-popup{
+        <div class="card-icon">🌟</div>
 
-    position:fixed;
+        <h3>Motivation Corner</h3>
 
-    inset:0;
+        <p>
+            Consistency is more powerful than
+            last-minute preparation.
+        </p>
 
-    background:rgba(0,0,0,.72);
+    </div>
 
-    z-index:2000;
 
-    display:none;
+    <div class="card">
 
-    overflow-y:auto;
+        <div class="card-icon">🎓</div>
 
-    padding:40px 15px;
+        <h3>After SSC</h3>
 
-}
+        <p>
+            Explore different academic and
+            career pathways after Class 10.
+        </p>
 
-.lesson-popup.show{
+    </div>
 
-    display:block;
 
-}
+    <div class="card">
 
-.lesson-popup-content{
+        <div class="card-icon">🚀</div>
 
-    max-width:850px;
+        <h3>Career Guidance</h3>
 
-    margin:auto;
+        <p>
+            Understand your interests,
+            strengths and future opportunities.
+        </p>
 
-    background:#f5fbf8;
+    </div>
 
-    border-radius:18px;
+</div>
 
-    padding:35px;
+</section>
 
-    position:relative;
 
-}
+<!-- ================= CONTACT ================= -->
 
-.close-popup{
+<section>
 
-    position:absolute;
+<div class="section-title">
 
-    right:18px;
+    <h2>📩 Contact & Feedback</h2>
 
-    top:15px;
+    <p>
+        Suggestions from students, teachers and
+        parents help us improve.
+    </p>
 
-    width:40px;
+</div>
 
-    height:40px;
 
-    border-radius:50%;
+<div class="cards">
 
-    border:none;
+    <div class="card">
 
-    background:#064d3b;
+        <div class="card-icon">📞</div>
 
-    color:white;
+        <h3>Contact</h3>
 
-    font-size:25px;
+        <p>
+            <strong>SS CAREER HUB</strong>
+        </p>
 
-    cursor:pointer;
+        <p>
+            Shaik Sharif
+        </p>
 
-}
+    </div>
 
-.popup-lesson{
 
-    display:none;
+    <div class="card">
 
-}
+        <div class="card-icon">💬</div>
 
-.popup-lesson.active{
+        <h3>Feedback</h3>
 
-    display:block;
+        <p>
+            Share your suggestions and experience.
+        </p>
 
-}
+        <br>
 
-.popup-badge{
+        <button
+            class="btn btn-primary"
+            onclick="demoMessage('Feedback Form')">
 
-    display:inline-block;
+            GIVE FEEDBACK
 
-    background:#087f5b;
+        </button>
 
-    color:white;
+    </div>
 
-    padding:6px 13px;
+</div>
 
-    border-radius:20px;
+</section>
 
-    font-size:11px;
 
-    font-weight:bold;
+<!-- ================= FOOTER ================= -->
 
-    margin-bottom:12px;
+<footer>
 
-}
+    <div class="brand">
+        STUDENT STUDY HUB
+    </div>
 
-.popup-lesson h2{
+    <p>
+        Prepare for the concept, not just the question.
+    </p>
 
-    color:#064d3b;
+    <p>
+        © 2026 All Rights Reserved by Shaik Sharif
+        — SS CAREER HUB.
+    </p>
 
-    font-size:34px;
+</footer>
 
-}
 
-.popup-subtitle{
-
-    color:#687871;
-
-    margin-bottom:25px;
-
-}
-
-.popup-block{
-
-    background:white;
-
-    padding:22px;
-
-    border-radius:12px;
-
-    margin:15px 0;
-
-    box-shadow:0 3px 12px rgba(0,0,0,.05);
-
-}
-
-.popup-block h3{
-
-    color:#087f5b;
-
-    margin-bottom:12px;
-
-}
-
-.popup-block ul{
-
-    padding-left:22px;
-
-}
-
-.popup-block li{
-
-    margin:8px 0;
-
-}
-
-.popup-diagram{
-
-    background:white;
-
-    border:2px dashed #087f5b;
-
-    border-radius:12px;
-
-    padding:25px;
-
-    text-align:center;
-
-    margin:20px 0;
-
-}
-
-.popup-diagram pre{
-
-    color:#064d3b;
-
-    font-size:16px;
-
-    font-weight:bold;
-
-    white-space:pre-wrap;
-
-}
-
-.popup-formula{
-
-    background:#064d3b;
-
-    color:white;
-
-    padding:15px;
-
-    margin:10px 0;
-
-    border-radius:8px;
-
-    text-align:center;
-
-    font-size:19px;
-
-    font-weight:bold;
-
-}
-
-.popup-answer{
-
-    margin-top:15px;
-
-    padding:15px;
-
-    background:#eaf8f2;
-
-    border-left:5px solid #087f5b;
-
-    color:#064d3b;
-
-    font-weight:bold;
-
-}
-
-.exam-flow{
-
-    background:#eaf8f2;
-
-    color:#064d3b;
-
-    padding:18px;
-
-    border-radius:10px;
-
-    text-align:center;
-
-    font-weight:bold;
-
-    line-height:2;
-
-}
-
-
-@media(max-width:600px){
-
-    .subject-heading{
-
-        padding:18px;
-
-    }
-
-    .subject-heading > span{
-
-        font-size:35px;
-
-    }
-
-    .subject-heading h3{
-
-        font-size:22px;
-
-    }
-
-    .lesson-popup-content{
-
-        padding:25px 18px;
-
-    }
-
-    .popup-lesson h2{
-
-        font-size:27px;
-
-    }
-
-    .popup-diagram pre{
-
-        font-size:13px;
-
-    }
-
-}
-
-</style>
-
-
-<!-- ================= SECTION 2 JAVASCRIPT ================= -->
+<!-- ================= JAVASCRIPT ================= -->
 
 <script>
 
-function showSubject(subjectId,button){
+function openLesson(event,button){
 
-    document
-    .querySelectorAll(".subject-panel")
-    .forEach(function(panel){
+    event.stopPropagation();
 
-        panel.classList.remove("active");
+    const card = button.closest(".subject-card");
 
-    });
+    const lesson = card.querySelector(".lesson-area");
 
-
-    document
-    .querySelectorAll(".subject-btn")
-    .forEach(function(btn){
-
-        btn.classList.remove("active");
-
-    });
-
-
-    const selected =
-        document.getElementById(subjectId);
-
-    if(selected){
-
-        selected.classList.add("active");
-
+    if(!lesson){
+        return;
     }
 
+    lesson.classList.toggle("active");
 
-    if(button){
+    if(lesson.classList.contains("active")){
 
-        button.classList.add("active");
+        button.innerHTML="CLOSE LESSON ↑";
+
+    }else{
+
+        button.innerHTML="OPEN LESSON →";
 
     }
-
 }
 
 
-function openChapter(lessonId){
+function showAnswer(id){
 
-    const popup =
-        document.getElementById("lessonPopup");
+    const answer=document.getElementById(id);
 
-    document
-    .querySelectorAll(".popup-lesson")
-    .forEach(function(lesson){
+    if(answer){
 
-        lesson.classList.remove("active");
-
-    });
-
-
-    const lesson =
-        document.getElementById(lessonId);
-
-    if(lesson){
-
-        lesson.classList.add("active");
-
-        popup.classList.add("show");
-
-        document.body.style.overflow="hidden";
+        answer.classList.toggle("show");
 
     }
-
 }
 
 
-function closeChapter(){
-
-    const popup =
-        document.getElementById("lessonPopup");
-
-    popup.classList.remove("show");
-
-    document.body.style.overflow="auto";
-
-}
-
-
-function chapterComingSoon(chapterName){
+function demoMessage(name){
 
     alert(
-        "📚 " +
-        chapterName +
-        "\n\nFull chapter notes are coming soon.\n\n" +
-        "This chapter will include:\n" +
-        "✓ Concept Explanation\n" +
-        "✓ Important Points\n" +
-        "✓ Diagrams\n" +
-        "✓ Formulae / Definitions\n" +
-        "✓ Solved Questions\n" +
-        "✓ Practice Questions\n" +
-        "✓ Board Exam Questions"
+        name +
+        " section is ready for content integration."
     );
 
 }
 
 
-document
-.addEventListener("keydown",function(event){
+function startDemoTest(){
 
-    if(event.key==="Escape"){
+    const area=document.getElementById("testArea");
 
-        closeChapter();
+    area.innerHTML=`
+
+        <div class="mock-question">
+
+            <h3>📝 Demo Mock Question</h3>
+
+            <br>
+
+            <p>
+
+                A right-angled triangle has an opposite
+                side of 3 cm and a hypotenuse of 5 cm.
+
+                <br><br>
+
+                What is sin θ?
+
+            </p>
+
+            <br>
+
+            <button
+                class="btn btn-primary"
+                onclick="checkTest(true)">
+
+                3/5
+
+            </button>
+
+            <button
+                class="btn btn-outline"
+                onclick="checkTest(false)">
+
+                5/3
+
+            </button>
+
+            <div id="testAnswer"></div>
+
+        </div>
+
+    `;
+
+}
+
+
+function checkTest(correct){
+
+    const result=document.getElementById("testAnswer");
+
+    if(correct){
+
+        result.innerHTML=`
+
+            <br>
+
+            <strong style="color:#087f5b;">
+
+                ✅ Correct!
+
+                <br>
+
+                sin θ = Opposite / Hypotenuse = 3/5
+
+            </strong>
+
+        `;
+
+    }else{
+
+        result.innerHTML=`
+
+            <br>
+
+            <strong style="color:#b42318;">
+
+                ❌ Incorrect.
+
+                <br>
+
+                Remember SOH:
+                Sine = Opposite / Hypotenuse.
+
+            </strong>
+
+        `;
 
     }
 
-});
-
-
-document
-.getElementById("lessonPopup")
-.addEventListener("click",function(event){
-
-    if(event.target === this){
-
-        closeChapter();
-
-    }
-
-});
+}
 
 </script>
 
