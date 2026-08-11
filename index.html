@@ -7,11 +7,10 @@
 <title>Student Study Hub | SS Career Hub</title>
 
 <style>
-
 :root{
     --green:#087f5b;
-    --dark-green:#064d3b;
-    --light-green:#eaf8f2;
+    --dark:#064d3b;
+    --light:#eaf8f2;
     --gold:#f4c542;
     --white:#ffffff;
     --text:#17352c;
@@ -30,7 +29,7 @@ html{
 }
 
 body{
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
     background:var(--bg);
     color:var(--text);
     line-height:1.6;
@@ -42,7 +41,7 @@ header{
     position:sticky;
     top:0;
     z-index:1000;
-    background:linear-gradient(135deg,var(--dark-green),var(--green));
+    background:linear-gradient(135deg,var(--dark),var(--green));
     padding:16px 6%;
     box-shadow:0 4px 18px rgba(0,0,0,.15);
 }
@@ -60,7 +59,6 @@ header{
     color:white;
     font-size:23px;
     font-weight:800;
-    letter-spacing:.5px;
 }
 
 .logo span{
@@ -94,8 +92,8 @@ nav a:hover{
     text-align:center;
     padding:70px 6%;
     background:
-        radial-gradient(circle at top right,#d8f4e9,transparent 35%),
-        linear-gradient(135deg,#effbf6,#ffffff);
+    radial-gradient(circle at top right,#d8f4e9,transparent 35%),
+    linear-gradient(135deg,#effbf6,#ffffff);
 }
 
 .hero-content{
@@ -116,7 +114,7 @@ nav a:hover{
 .hero h1{
     font-size:56px;
     line-height:1.1;
-    color:var(--dark-green);
+    color:var(--dark);
     margin-bottom:20px;
 }
 
@@ -158,7 +156,7 @@ nav a:hover{
 }
 
 .btn-primary:hover{
-    background:var(--dark-green);
+    background:var(--dark);
     transform:translateY(-2px);
 }
 
@@ -169,7 +167,7 @@ nav a:hover{
 }
 
 .btn-outline:hover{
-    background:var(--light-green);
+    background:var(--light);
 }
 
 /* SECTIONS */
@@ -180,13 +178,13 @@ section{
 
 .section-title{
     text-align:center;
-    max-width:800px;
+    max-width:850px;
     margin:0 auto 45px;
 }
 
 .section-title h2{
     font-size:34px;
-    color:var(--dark-green);
+    color:var(--dark);
     margin-bottom:10px;
 }
 
@@ -224,15 +222,13 @@ section{
 }
 
 .card h3{
-    color:var(--dark-green);
+    color:var(--dark);
     margin-bottom:8px;
 }
 
 .card p{
     color:var(--gray);
 }
-
-/* SUBJECTS */
 
 .subject-card{
     cursor:pointer;
@@ -241,7 +237,7 @@ section{
 .subject-tag{
     display:inline-block;
     margin-top:15px;
-    background:var(--light-green);
+    background:var(--light);
     color:var(--green);
     padding:5px 10px;
     border-radius:20px;
@@ -249,14 +245,15 @@ section{
     font-weight:bold;
 }
 
-/* DEMO LESSON AREA */
+/* LESSON */
 
 .lesson-area{
     display:none;
     margin-top:20px;
     padding:20px;
-    background:var(--light-green);
+    background:var(--light);
     border-radius:12px;
+    cursor:default;
 }
 
 .lesson-area.active{
@@ -264,8 +261,16 @@ section{
 }
 
 .lesson-area h4{
-    color:var(--dark-green);
-    margin-bottom:8px;
+    color:var(--dark);
+    margin:18px 0 10px;
+}
+
+.lesson-area ul{
+    padding-left:22px;
+}
+
+.lesson-area li{
+    margin:5px 0;
 }
 
 /* FORMULA */
@@ -273,11 +278,11 @@ section{
 .formula{
     margin:15px 0;
     padding:17px;
-    background:var(--dark-green);
+    background:var(--dark);
     color:white;
     border-radius:10px;
     text-align:center;
-    font-size:21px;
+    font-size:20px;
     font-weight:bold;
 }
 
@@ -290,10 +295,30 @@ section{
     border:2px dashed var(--green);
     border-radius:12px;
     text-align:center;
+}
+
+/* QUESTION */
+
+.question{
+    background:white;
+    border-left:5px solid var(--green);
+    padding:17px;
+    margin:12px 0;
+    border-radius:8px;
+}
+
+.answer{
+    display:none;
+    margin-top:10px;
+    color:var(--dark);
     font-weight:bold;
 }
 
-/* FEATURE GRID */
+.answer.show{
+    display:block;
+}
+
+/* FEATURE */
 
 .feature-grid{
     max-width:1200px;
@@ -303,10 +328,10 @@ section{
     gap:20px;
 }
 
-/* MOCK SECTION */
+/* MOCK */
 
 .mock-section{
-    background:linear-gradient(135deg,var(--dark-green),var(--green));
+    background:linear-gradient(135deg,var(--dark),var(--green));
     color:white;
 }
 
@@ -319,6 +344,15 @@ section{
 .mock-box h2{
     font-size:34px;
     margin-bottom:12px;
+}
+
+.mock-question{
+    margin-top:25px;
+    background:white;
+    color:var(--dark);
+    padding:25px;
+    border-radius:12px;
+    text-align:left;
 }
 
 /* FOOTER */
@@ -369,9 +403,7 @@ footer p{
     .section-title h2{
         font-size:28px;
     }
-
 }
-
 </style>
 </head>
 
@@ -380,7 +412,6 @@ footer p{
 <!-- HEADER -->
 
 <header>
-
 <div class="navbar">
 
     <div class="logo">
@@ -397,7 +428,6 @@ footer p{
     </nav>
 
 </div>
-
 </header>
 
 
@@ -433,11 +463,10 @@ footer p{
     </div>
 
 </div>
-
 </section>
 
 
-<!-- SECTION 1 -->
+<!-- SUBJECTS -->
 
 <section id="subjects">
 
@@ -446,704 +475,722 @@ footer p{
     <h2>📚 Subject Learning Hub</h2>
 
     <p>
-        Complete concept-based learning with diagrams,
-        formulas, problems and different question patterns.
+        Concept-based learning with diagrams, formulas,
+        problems and different question patterns.
     </p>
 
 </div>
-
 
 <div class="cards">
 
 
-    <!-- MATHS -->
+<!-- MATHS -->
 
-    <div class="card subject-card">
+<div class="card subject-card">
 
-        <div class="card-icon">📐</div>
+<div class="card-icon">📐</div>
 
-        <h3>Mathematics</h3>
+<h3>Mathematics</h3>
 
-        <p>
-            Trigonometry — Sine, Cosine & Tangent
-        </p>
+<p>
+Trigonometry — Sine, Cosine & Tangent
+</p>
 
-        <span class="subject-tag">
-            DEMO LESSON
-        </span>
-
-        <div class="lesson-area">
-
-            <h4>Trigonometry</h4>
-
-            <p>
-                Understanding trigonometric ratios
-                using a right-angled triangle.
-            </p>
-
-            <div class="diagram">
-                🔺 RIGHT-ANGLED TRIANGLE
-                <br><br>
-                Opposite • Adjacent • Hypotenuse
-            </div>
-
-            <div class="formula">
-                sin θ = Opposite / Hypotenuse
-            </div>
-
-            <div class="formula">
-                cos θ = Adjacent / Hypotenuse
-            </div>
-
-            <div class="formula">
-                tan θ = Opposite / Adjacent
-            </div>
-
-        </div>
-
-    </div>
+<span class="subject-tag">
+DEMO LESSON
+</span>
 
 
-    <!-- BIOLOGY -->
+<div class="lesson-area">
 
-    <div class="card subject-card">
+<h4>📐 Trigonometry — Sine, Cosine & Tangent</h4>
 
-        <div class="card-icon">🧬</div>
-
-        <h3>Biology</h3>
-
-        <p>
-            Heredity — Traits, Genes & Variation
-        </p>
-
-        <span class="subject-tag">
-            DEMO LESSON
-        </span>
-
-        <div class="lesson-area">
-
-            <h4>Heredity</h4>
-
-            <p>
-                Heredity is the transmission of
-                characteristics from parents to offspring.
-            </p>
-
-            <div class="diagram">
-                👨 Parent
-                ↓
-                🧬 Genes
-                ↓
-                👦 Offspring
-            </div>
-
-            <p>
-                Key concepts include traits,
-                genes, chromosomes, heredity and variation.
-            </p>
-
-        </div>
-
-    </div>
+<p>
+Trigonometry is the study of relationships between
+the angles and sides of triangles.
+In this lesson we focus on a right-angled triangle.
+</p>
 
 
-    <!-- PHYSICS -->
+<h4>🔺 Step 1 — Understand the Triangle</h4>
 
-    <div class="card subject-card">
+<div class="diagram">
 
-        <div class="card-icon">⚡</div>
+<h3>RIGHT-ANGLED TRIANGLE</h3>
 
-        <h3>Physics</h3>
+<br>
 
-        <p>
-            Electric Current — Concepts, Circuits & Problems
-        </p>
+<p style="font-size:18px;">
 
-        <span class="subject-tag">
-            DEMO LESSON
-        </span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /|
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/ |
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;| Opposite
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;/ θ&nbsp;&nbsp;|
+<br>
+&nbsp;&nbsp;/________|
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Adjacent
 
-        <div class="lesson-area">
+</p>
 
-            <h4>Electric Current</h4>
+<br>
 
-            <p>
-                Understand electric current through
-                circuits, formulas and numerical problems.
-            </p>
-
-            <div class="diagram">
-                🔋 Battery → 💡 Bulb → 🔋
-                <br><br>
-                SIMPLE ELECTRIC CIRCUIT
-            </div>
-
-            <div class="formula">
-                V = IR
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- SOCIAL -->
-
-    <div class="card subject-card">
-
-        <div class="card-icon">🏛️</div>
-
-        <h3>Social Studies</h3>
-
-        <p>
-            Our Constitution & Its Principles
-        </p>
-
-        <span class="subject-tag">
-            DEMO LESSON
-        </span>
-
-        <div class="lesson-area">
-
-            <h4>Our Constitution</h4>
-
-            <p>
-                Understand constitutional values,
-                principles, rights, duties and democracy.
-            </p>
-
-            <div class="diagram">
-                🏛️ CONSTITUTION
-                <br><br>
-                Rights → Duties → Democracy
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- SECTION 2 -->
-
-<section id="papers">
-
-<div class="section-title">
-
-    <h2>📝 Previous Year & Sample Papers</h2>
-
-    <p>
-        Practice familiar questions and new question patterns.
-    </p>
+<p>
+<strong>Hypotenuse:</strong>
+Side opposite the 90° angle and the longest side.
+</p>
 
 </div>
 
 
-<div class="feature-grid">
+<h4>🧠 Step 2 — Identify the Three Sides</h4>
 
-    <div class="card">
-        <div class="card-icon">📄</div>
-        <h3>Previous Year Papers</h3>
-        <p>
-            Board examination practice papers.
-        </p>
-    </div>
+<ul>
 
-    <div class="card">
-        <div class="card-icon">📑</div>
-        <h3>Sample Papers</h3>
-        <p>
-            Practice examination-style questions.
-        </p>
-    </div>
+<li>
+<strong>Hypotenuse:</strong>
+Longest side, opposite the 90° angle.
+</li>
 
-    <div class="card">
-        <div class="card-icon">🔄</div>
-        <h3>Question Patterns</h3>
-        <p>
-            Same concept, different wording and application.
-        </p>
-    </div>
+<li>
+<strong>Opposite:</strong>
+Side opposite the selected angle θ.
+</li>
 
+<li>
+<strong>Adjacent:</strong>
+Side next to θ, excluding the hypotenuse.
+</li>
+
+</ul>
+
+
+<h4>🔵 Sine — SOH</h4>
+
+<div class="formula">
+sin θ = Opposite / Hypotenuse
 </div>
 
-</section>
+<p>
+Use sine when the question involves
+Opposite and Hypotenuse.
+</p>
 
 
-<!-- SECTION 3 -->
+<h4>🟢 Cosine — CAH</h4>
 
-<section>
-
-<div class="section-title">
-
-    <h2>📐 Important Formulas & Diagrams</h2>
-
-    <p>
-        Quick revision resources for important concepts.
-    </p>
-
+<div class="formula">
+cos θ = Adjacent / Hypotenuse
 </div>
 
+<p>
+Use cosine when the question involves
+Adjacent and Hypotenuse.
+</p>
 
-<div class="feature-grid">
 
-    <div class="card">
-        <div class="card-icon">📐</div>
-        <h3>Maths Formulas</h3>
-        <p>
-            Important formulas organised chapter-wise.
-        </p>
-    </div>
+<h4>🟠 Tangent — TOA</h4>
 
-    <div class="card">
-        <div class="card-icon">⚡</div>
-        <h3>Physics Formulas</h3>
-        <p>
-            Formulas with numerical problem practice.
-        </p>
-    </div>
-
-    <div class="card">
-        <div class="card-icon">🧬</div>
-        <h3>Science Diagrams</h3>
-        <p>
-            Visual learning for important concepts.
-        </p>
-    </div>
-
+<div class="formula">
+tan θ = Opposite / Adjacent
 </div>
 
-</section>
+<p>
+Use tangent when the question involves
+Opposite and Adjacent.
+</p>
 
 
-<!-- SECTION 4 -->
+<div class="diagram">
 
-<section id="revision">
+<h3>🧠 EASY MEMORY TRICK</h3>
 
-<div class="section-title">
+<br>
 
-    <h2>📅 90 Days Revision Plan</h2>
+<strong>SOH</strong>
+→ Sine = Opposite / Hypotenuse
 
-    <p>
-        A structured roadmap for final examination preparation.
-    </p>
+<br><br>
+
+<strong>CAH</strong>
+→ Cosine = Adjacent / Hypotenuse
+
+<br><br>
+
+<strong>TOA</strong>
+→ Tangent = Opposite / Adjacent
 
 </div>
 
 
-<div class="feature-grid">
+<h4>📝 Solved Example</h4>
 
-    <div class="card">
+<p>
+In a right-angled triangle, the opposite side is
+3 cm and the hypotenuse is 5 cm.
+Find sin θ.
+</p>
 
-        <h3>Days 1–30</h3>
+<div class="formula">
 
-        <p>
-            Build concepts and complete important lessons.
-        </p>
+sin θ = Opposite / Hypotenuse
 
-    </div>
+<br><br>
 
-
-    <div class="card">
-
-        <h3>Days 31–60</h3>
-
-        <p>
-            Practice formulas, diagrams, exercises and papers.
-        </p>
-
-    </div>
-
-
-    <div class="card">
-
-        <h3>Days 61–80</h3>
-
-        <p>
-            Chapter tests, subject tests and mock examinations.
-        </p>
-
-    </div>
-
-
-    <div class="card">
-
-        <h3>Days 81–90</h3>
-
-        <p>
-            Final revision and focus on weak areas.
-        </p>
-
-    </div>
+sin θ = 3 / 5
 
 </div>
 
-</section>
+<p>
+<strong>Answer: sin θ = 3/5</strong>
+</p>
 
 
-<!-- SECTION 5 -->
+<h4>🔄 Different Question Patterns</h4>
 
-<section>
+<div class="question">
+<strong>Pattern 1:</strong>
+Direct formula-based question.
+</div>
 
-<div class="section-title">
+<div class="question">
+<strong>Pattern 2:</strong>
+Triangle diagram is given and student must identify the sides.
+</div>
 
-    <h2>🎥 Best Concept Videos</h2>
+<div class="question">
+<strong>Pattern 3:</strong>
+A missing side has to be calculated.
+</div>
 
-    <p>
-        Visual explanations for difficult concepts.
-    </p>
+<div class="question">
+<strong>Pattern 4:</strong>
+A real-life situation is given.
+</div>
 
+<div class="question">
+<strong>Pattern 5:</strong>
+Student must decide which trigonometric ratio to use.
 </div>
 
 
-<div class="feature-grid">
+<h4>🎯 Practice Question</h4>
 
-    <div class="card">
+<div class="question">
 
-        <div class="card-icon">▶️</div>
+A right triangle has an adjacent side of
+4 cm and a hypotenuse of 5 cm.
 
-        <h3>Concept Videos</h3>
+<br><br>
 
-        <p>
-            Chapter-wise video learning resources.
-        </p>
+Find cos θ.
 
-    </div>
+<br>
 
+<button class="btn btn-primary"
+onclick="showAnswer('mathAnswer')">
 
-    <div class="card">
+Show Answer
 
-        <div class="card-icon">🎬</div>
+</button>
 
-        <h3>Visual Learning</h3>
+<div id="mathAnswer" class="answer">
 
-        <p>
-            Learn concepts through diagrams and explanations.
-        </p>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="card-icon">🧠</div>
-
-        <h3>Revision Videos</h3>
-
-        <p>
-            Quick revision before tests and examinations.
-        </p>
-
-    </div>
+cos θ = Adjacent / Hypotenuse = 4/5
 
 </div>
-
-</section>
-
-
-<!-- SECTION 6 -->
-
-<section id="tests" class="mock-section">
-
-<div class="mock-box">
-
-    <h2>🎯 Self & Mock Exams</h2>
-
-    <p>
-        Test your understanding. Identify your weak areas.
-        Improve before the final examination.
-    </p>
-
-    <br>
-
-    <button class="btn btn-outline"
-            onclick="startDemoTest()">
-
-        Start Demo Test
-
-    </button>
-
-    <div id="testArea"></div>
-
-</div>
-
-</section>
-
-
-<!-- SECTION 7 -->
-
-<section>
-
-<div class="section-title">
-
-    <h2>🏆 Board Exam Tips & Tricks</h2>
-
-    <p>
-        Simple strategies for better exam preparation.
-    </p>
 
 </div>
 
 
-<div class="feature-grid">
+<h4>⚡ Quick Revision</h4>
 
-    <div class="card">
-        <div class="card-icon">🔍</div>
-        <h3>Read Carefully</h3>
-        <p>
-            Don't assume a question is the same just because
-            it looks familiar.
-        </p>
-    </div>
+<div class="formula">
 
+SOH → sin θ = O/H
 
-    <div class="card">
-        <div class="card-icon">🧠</div>
-        <h3>Identify the Concept</h3>
-        <p>
-            Understand what concept the question is actually testing.
-        </p>
-    </div>
+<br><br>
 
+CAH → cos θ = A/H
 
-    <div class="card">
-        <div class="card-icon">⏱️</div>
-        <h3>Manage Time</h3>
-        <p>
-            Practice timed examinations.
-        </p>
-    </div>
+<br><br>
 
-
-    <div class="card">
-        <div class="card-icon">⚠️</div>
-        <h3>Review Mistakes</h3>
-        <p>
-            Understand why an answer was wrong instead of
-            simply memorising the correct answer.
-        </p>
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- SECTION 8 -->
-
-<section id="career">
-
-<div class="section-title">
-
-    <h2>💡 Motivation & Career Guidance</h2>
-
-    <p>
-        Education is not only about marks — it is also about
-        understanding your future opportunities.
-    </p>
+TOA → tan θ = O/A
 
 </div>
 
 
-<div class="feature-grid">
+<div class="diagram">
 
-    <div class="card">
+<h3>🔥 STUDY HUB CHALLENGE</h3>
 
-        <div class="card-icon">🌟</div>
+<br>
 
-        <h3>Motivation Corner</h3>
-
-        <p>
-            Stay consistent, learn from mistakes and keep improving.
-        </p>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="card-icon">🎓</div>
-
-        <h3>After SSC</h3>
-
-        <p>
-            Explore different educational pathways after Class 10.
-        </p>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="card-icon">🚀</div>
-
-        <h3>Career Guidance</h3>
-
-        <p>
-            Understand your interests, strengths and future options.
-        </p>
-
-    </div>
+<strong>
+Look at the triangle → Identify the sides
+→ Choose the ratio → Solve the problem.
+</strong>
 
 </div>
 
-</section>
+</div>
+</div>
 
 
-<!-- SECTION 9 -->
+<!-- BIOLOGY -->
 
-<section>
+<div class="card subject-card">
 
-<div class="section-title">
+<div class="card-icon">🧬</div>
 
-    <h2>📩 Contact & Feedback</h2>
+<h3>Biology</h3>
 
-    <p>
-        Suggestions from students, parents and teachers
-        help us improve.
-    </p>
+<p>
+Heredity — Traits, Genes & Variation
+</p>
+
+<span class="subject-tag">
+DEMO LESSON
+</span>
+
+
+<div class="lesson-area">
+
+<h4>🧬 Heredity — Learn the Concept</h4>
+
+<p>
+Heredity is the transmission of characteristics
+or traits from parents to their offspring.
+</p>
+
+
+<h4>🧬 What are Traits?</h4>
+
+<p>
+A trait is a specific characteristic of an organism.
+</p>
+
+<div class="diagram">
+
+👨 Parent
+<br>
+↓
+<br>
+🧬 Genetic Information
+<br>
+↓
+<br>
+👦 Offspring
 
 </div>
 
 
-<div class="cards">
+<h4>Examples of Traits</h4>
 
-    <div class="card">
+<ul>
 
-        <div class="card-icon">📞</div>
+<li>Height</li>
+<li>Eye colour</li>
+<li>Hair characteristics</li>
+<li>Skin colour</li>
+<li>Shape of seeds in plants</li>
 
-        <h3>Contact</h3>
-
-        <p>
-            SS CAREER HUB
-            <br>
-            Shaik Sharif
-        </p>
-
-    </div>
+</ul>
 
 
-    <div class="card">
+<h4>🧬 Genes & Chromosomes</h4>
 
-        <div class="card-icon">💬</div>
+<p>
+Genes carry information responsible for inherited traits.
+Genes are located on chromosomes, which are present
+in the nucleus of cells.
+</p>
 
-        <h3>Feedback</h3>
+<div class="diagram">
 
-        <p>
-            Share your suggestions and experience.
-        </p>
-
-        <button class="btn btn-primary"
-                onclick="alert('Feedback form will be connected here.')">
-
-            Give Feedback
-
-        </button>
-
-    </div>
+<strong>
+Parents → Chromosomes → Genes → Traits → Offspring
+</strong>
 
 </div>
 
-</section>
+
+<h4>🔬 Variation</h4>
+
+<p>
+Offspring are similar to their parents, but they are
+not always exactly identical. Differences in
+characteristics are called variations.
+</p>
 
 
-<!-- FOOTER -->
+<h4>👨‍🔬 Mendel's Experiments</h4>
 
-<footer>
+<p>
+Gregor Mendel studied inheritance using pea plants.
+His experiments helped establish important principles
+of inheritance.
+</p>
 
-    <div class="brand">
-        STUDENT STUDY HUB
-    </div>
+<div class="diagram">
 
-    <p>
-        Prepare for the concept, not just the question.
-    </p>
+🌱 Parent Plant
+<br>
+↓
+<br>
+🧬 Traits
+<br>
+↓
+<br>
+🌱 Offspring
 
-    <p>
-        © 2026 All Rights Reserved by Shaik Sharif —
-        SS CAREER HUB.
-    </p>
-
-</footer>
-
-
-<script>
-
-/* SUBJECT LESSON TOGGLE */
-
-document.querySelectorAll(".subject-card").forEach(function(card){
-
-    card.addEventListener("click",function(){
-
-        const lesson = this.querySelector(".lesson-area");
-
-        if(lesson){
-            lesson.classList.toggle("active");
-        }
-
-    });
-
-});
+</div>
 
 
-/* DEMO TEST */
+<h4>🔄 Different Question Patterns</h4>
 
-function startDemoTest(){
+<div class="question">
 
-    const area = document.getElementById("testArea");
+<strong>Pattern 1:</strong>
+Direct definition of heredity.
 
-    area.innerHTML = `
+</div>
 
-        <div style="
-            margin-top:25px;
-            background:white;
-            color:#064d3b;
-            padding:25px;
-            border-radius:12px;
-        ">
+<div class="question">
 
-            <h3>Demo Question</h3>
+<strong>Pattern 2:</strong>
+A question describes resemblance between
+parents and offspring.
 
-            <p>
-                If a right-angled triangle has
-                Opposite = 3 and Hypotenuse = 5,
-                what is sin θ?
-            </p>
+</div>
 
-            <br>
+<div class="question">
 
-            <button class="btn btn-primary"
-                    onclick="testAnswer(true)">
-                3/5
-            </button>
+<strong>Pattern 3:</strong>
+A question asks about differences between offspring.
 
-            <button class="btn btn-outline"
-                    onclick="testAnswer(false)">
-                5/3
-            </button>
+</div>
 
-            <div id="testAnswer"></div>
+<div class="question">
 
-        </div>
+<strong>Pattern 4:</strong>
+A diagram or inheritance situation is given.
 
-    `;
-
-}
+</div>
 
 
-function testAnswer(correct){
+<h4>🧠 Quick Revision</h4>
 
-    const result = document.getElementById("testAnswer");
+<div class="formula">
 
-    if(correct){
+Heredity = Transmission of traits
 
-        result.innerHTML =
-        "<br><strong>✅ Correct! sin θ = Opposite / Hypotenuse = 3/5</strong>";
+<br><br>
 
-    }else{
+Gene = Unit of hereditary information
 
-        result.innerHTML =
-        "<br><strong>❌ Try
+<br><br>
+
+Variation = Differences in characteristics
+
+</div>
+
+
+<h4>🎯 Practice Question</h4>
+
+<div class="question">
+
+What is heredity?
+
+<br>
+
+<button class="btn btn-primary"
+onclick="showAnswer('bioAnswer')">
+
+Show Answer
+
+</button>
+
+<div id="bioAnswer" class="answer">
+
+Heredity is the transmission of characteristics
+or traits from parents to offspring.
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- PHYSICS -->
+
+<div class="card subject-card">
+
+<div class="card-icon">⚡</div>
+
+<h3>Physics</h3>
+
+<p>
+Electric Current — Concepts, Circuits & Problems
+</p>
+
+<span class="subject-tag">
+DEMO LESSON
+</span>
+
+
+<div class="lesson-area">
+
+<h4>⚡ Electric Current — Learn the Concept</h4>
+
+<p>
+Electric current is the flow of electric charge
+through a conductor.
+</p>
+
+
+<h4>🔋 Simple Electric Circuit</h4>
+
+<div class="diagram">
+
+🔋 Battery
+<br>
+↓
+<br>
+⚡ Current
+<br>
+↓
+<br>
+💡 Bulb
+<br>
+↓
+<br>
+🔋 Battery
+
+<br><br>
+
+<strong>Closed Circuit → Current can flow</strong>
+
+</div>
+
+
+<h4>📌 Important Terms</h4>
+
+<ul>
+
+<li><strong>Current:</strong> Flow of electric charge.</li>
+
+<li><strong>Potential Difference:</strong>
+Work done per unit charge.</li>
+
+<li><strong>Resistance:</strong>
+Opposition offered to the flow of current.</li>
+
+</ul>
+
+
+<h4>⚡ Ohm's Law</h4>
+
+<div class="formula">
+
+V = IR
+
+</div>
+
+<p>
+
+V = Potential Difference
+
+<br>
+
+I = Current
+
+<br>
+
+R = Resistance
+
+</p>
+
+
+<h4>🧮 Solved Numerical Problem</h4>
+
+<div class="question">
+
+A resistor of resistance 5 Ω is connected
+to a 10 V source.
+
+<br><br>
+
+Find the current.
+
+<br><br>
+
+<strong>Solution:</strong>
+
+<div class="formula">
+
+I = V/R
+
+<br><br>
+
+I = 10/5
+
+<br><br>
+
+I = 2 A
+
+</div>
+
+<strong>Answer: 2 A</strong>
+
+</div>
+
+
+<h4>🔄 Different Question Patterns</h4>
+
+<div class="question">
+
+<strong>Pattern 1:</strong>
+Direct formula question.
+
+</div>
+
+<div class="question">
+
+<strong>Pattern 2:</strong>
+Voltage and resistance are given;
+student must calculate current.
+
+</div>
+
+<div class="question">
+
+<strong>Pattern 3:</strong>
+Current and resistance are given;
+student must calculate voltage.
+
+</div>
+
+<div class="question">
+
+<strong>Pattern 4:</strong>
+A circuit diagram is given and
+student must identify the components.
+
+</div>
+
+<div class="question">
+
+<strong>Pattern 5:</strong>
+A conceptual situation is given
+without directly mentioning Ohm's Law.
+
+</div>
+
+
+<h4>⚠️ Common Mistake</h4>
+
+<div class="diagram">
+
+Always check the units.
+
+<br><br>
+
+Voltage → V
+
+<br>
+
+Current → A
+
+<br>
+
+Resistance → Ω
+
+</div>
+
+
+<h4>🧠 Quick Revision</h4>
+
+<div class="formula">
+
+V = IR
+
+<br><br>
+
+I = V/R
+
+<br><br>
+
+R = V/I
+
+</div>
+
+
+<h4>🎯 Practice Problem</h4>
+
+<div class="question">
+
+A resistance of 10 Ω is connected
+to a 20 V source.
+
+<br><br>
+
+Find the current.
+
+<br>
+
+<button class="btn btn-primary"
+onclick="showAnswer('physicsAnswer')">
+
+Show Answer
+
+</button>
+
+<div id="physicsAnswer" class="answer">
+
+I = V/R = 20/10 = 2 A
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- SOCIAL -->
+
+<div class="card subject-card">
+
+<div class="card-icon">🏛️</div>
+
+<h3>Social Studies</h3>
+
+<p>
+Our Constitution and Its Principles
+</p>
+
+<span class="subject-tag">
+DEMO LESSON
+</span>
+
+
+<div class="lesson-area">
+
+<h4>🏛️ Our Constitution and Its Principles</h4>
+
+<p>
+A Constitution provides the basic framework
+for the functioning of a country and its government.
+</p>
+
+
+<h4>📖 What is a Constitution?</h4>
+
+<p>
+A
